@@ -182,7 +182,7 @@ const squares = document.querySelectorAll(".square");
 
 let selectedPiece = null;
 
-squares.forEach(square => {
+squares.forEach(function(square) {
 
     square.addEventListener("click", function() {
 
@@ -195,7 +195,7 @@ squares.forEach(square => {
 
         } else {
 
-            if (this.textContent.trim() === "") {
+            if (this !== selectedPiece) {
                 this.textContent = selectedPiece.textContent;
                 selectedPiece.textContent = "";
             }
@@ -208,6 +208,7 @@ squares.forEach(square => {
 
 });
 </script>
+
 
 </body>
 </html
