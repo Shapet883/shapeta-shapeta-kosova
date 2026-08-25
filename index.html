@@ -224,7 +224,14 @@ squares.forEach(function(square, index) {
             if (toCol === fromCol && toRow === fromRow - 1) {
                 validMove = true;
             }
-
+// Marrja diagonale e ushtarit të bardhë
+if (
+    Math.abs(toCol - fromCol) === 1 &&
+    toRow === fromRow - 1 &&
+    this.textContent.trim() !== ""
+) {
+    validMove = true;
+}
             // Dy hapa nga pozita fillestare
             if (
                 toCol === fromCol &&
@@ -244,7 +251,14 @@ squares.forEach(function(square, index) {
             if (toCol === fromCol && toRow === fromRow + 1) {
                 validMove = true;
             }
-
+// Marrja diagonale e ushtarit të zi
+if (
+    Math.abs(toCol - fromCol) === 1 &&
+    toRow === fromRow + 1 &&
+    this.textContent.trim() !== ""
+) {
+    validMove = true;
+}
             // Dy hapa nga pozita fillestare
             if (
                 toCol === fromCol &&
