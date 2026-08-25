@@ -182,10 +182,11 @@ const squares = document.querySelectorAll(".square");
 
 let selectedPiece = null;
 
-squares.forEach(function(square) {
+squares.forEach(function(square, index) {
 
     square.addEventListener("click", function() {
 
+        // Zgjedhja e figurës
         if (selectedPiece === null) {
 
             if (this.textContent.trim() !== "") {
@@ -193,19 +194,78 @@ squares.forEach(function(square) {
                 this.classList.add("selected");
             }
 
-        } else {
-
-            if (this !== selectedPiece) {
-                this.textContent = selectedPiece.textContent;
-                selectedPiece.textContent = "";
-            }
-
-            selectedPiece.classList.remove("selected");
-            selectedPiece = null;
+            return;
         }
 
-    });
+        // Nëse klikojmë përsëri figurën e zgjedhur
+        if (this === selectedPiece) {
+            this.classList.remove("selected");
+            selectedPiece = null;
+            return;
+        }
 
+        const from = Array.from(squares).indexOf(selectedPiece);
+        const to = Array.from(squares).indexOf(this);
+
+        const fromRow = Math.floor(from / 8);
+        const fromCol = from % 8;
+
+        const toRow = Math.floor(to / 8);
+        const toCol = to % 8;
+
+        const piece = selectedPiece.textContent.trim();
+
+        let validMove = false;
+
+        // ♙ USHTARI I BARDHË
+        if (piece === "♙") {
+
+            // Një hap përpara
+            if (toCol === fromCol && toRow === fromRow - 1) {
+                validMove = true;
+            }
+
+            // Dy hapa nga pozita fillestare
+            if (
+                toCol === fromCol &&
+                fromRow === 6 &&
+                toRow === 4 &&
+                squares[(fromRow - 1) * 8 + fromCol].textContent.trim() === "" &&
+                this.textContent.trim() === ""
+            ) {
+                validMove = true;
+            }
+        }
+
+        // ♟ USHTARI I ZI
+        if (piece === "♟") {
+
+            // Një hap përpara
+            if (toCol === fromCol && toRow === fromRow + 1) {
+                validMove = true;
+            }
+
+            // Dy hapa nga pozita fillestare
+            if (
+                toCol === fromCol &&
+                fromRow === 1 &&
+                toRow === 3 &&
+                squares[(fromRow + 1) * 8 + fromCol].textContent.trim() === "" &&
+                this.textContent.trim() === ""
+            ) {
+                validMove = true;
+            }
+        }
+
+        // Lëvizja
+        if (validMove && this.textContent.trim() === "") {
+            this.textContent = selectedPiece.textContent;
+            selectedPiece.textContent = "";
+        }
+
+        selectedPiece.classList.remove("selected");
+        selectedPiece = null;
+    });
 });
 </script>
 
