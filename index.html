@@ -182,22 +182,17 @@ const squares = document.querySelectorAll(".square");
 
 let selectedPiece = null;
 
-squares.forEach(function(square, index) {
-
+squares.forEach(function(square) {
     square.addEventListener("click", function() {
 
-        // Zgjedhja e figurës
         if (selectedPiece === null) {
-
             if (this.textContent.trim() !== "") {
                 selectedPiece = this;
                 this.classList.add("selected");
             }
-
             return;
         }
 
-        // Nëse klikojmë përsëri figurën e zgjedhur
         if (this === selectedPiece) {
             this.classList.remove("selected");
             selectedPiece = null;
@@ -209,54 +204,28 @@ squares.forEach(function(square, index) {
 
         const fromRow = Math.floor(from / 8);
         const fromCol = from % 8;
-
         const toRow = Math.floor(to / 8);
         const toCol = to % 8;
 
         const piece = selectedPiece.textContent.trim();
 
-let validMove = false;
+        let validMove = false;
 
-// ♖ TORRA
-if (piece === "♖" || piece === "♜") {
-
-    // Lëvizje horizontalisht ose vertikalisht
-    if (toRow === fromRow || toCol === fromCol) {
-        validMove = true;
-    }
-}
-
-// ♙ USHTARI I BARDHË
-if (piece === "♙") {
-
-    // Një hap përpara
-    if (toCol === fromCol && toRow === fromRow - 1) {
-        validMove = true;
-    }
-
-// ♙ USHTARI I BARDHË
-if (piece === "♙") {
-
-    // Një hap përpara
-    if (toCol === fromCol && toRow === fromRow - 1) {
-        validMove = true;
-    }
-        // ♙ USHTARI I BARDHË
-        if (piece === "♙") {
-
-            // Një hap përpara
-            if (toCol === fromCol && toRow === fromRow - 1) {
+        if (piece === "♖" || piece === "♜") {
+            if (toRow === fromRow || toCol === fromCol) {
                 validMove = true;
             }
-// Marrja diagonale e ushtarit të bardhë
-if (
-    Math.abs(toCol - fromCol) === 1 &&
-    toRow === fromRow - 1 &&
-    this.textContent.trim() !== ""
-) {
-    validMove = true;
-}
-            // Dy hapa nga pozita fillestare
+        }
+
+        if (piece === "♙") {
+            if (toCol === fromCol && toRow === fromRow - 1 && this.textContent.trim() === "") {
+                validMove = true;
+            }
+
+            if (Math.abs(toCol - fromCol) === 1 && toRow === fromRow - 1 && this.textContent.trim() !== "") {
+                validMove = true;
+            }
+
             if (
                 toCol === fromCol &&
                 fromRow === 6 &&
@@ -268,22 +237,15 @@ if (
             }
         }
 
-        // ♟ USHTARI I ZI
         if (piece === "♟") {
-
-            // Një hap përpara
-            if (toCol === fromCol && toRow === fromRow + 1) {
+            if (toCol === fromCol && toRow === fromRow + 1 && this.textContent.trim() === "") {
                 validMove = true;
             }
-// Marrja diagonale e ushtarit të zi
-if (
-    Math.abs(toCol - fromCol) === 1 &&
-    toRow === fromRow + 1 &&
-    this.textContent.trim() !== ""
-) {
-    validMove = true;
-}
-            // Dy hapa nga pozita fillestare
+
+            if (Math.abs(toCol - fromCol) === 1 && toRow === fromRow + 1 && this.textContent.trim() !== "") {
+                validMove = true;
+            }
+
             if (
                 toCol === fromCol &&
                 fromRow === 1 &&
@@ -295,7 +257,6 @@ if (
             }
         }
 
-        // Lëvizja
         if (validMove) {
             this.textContent = selectedPiece.textContent;
             selectedPiece.textContent = "";
