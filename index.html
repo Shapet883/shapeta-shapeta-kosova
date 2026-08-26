@@ -215,7 +215,8 @@ squares.forEach(function(square, index) {
 
         const piece = selectedPiece.textContent.trim();
 
-se;        let validMove = fal
+let validMove = false;
+
 // ♖ TORRA
 if (piece === "♖" || piece === "♜") {
 
@@ -224,6 +225,14 @@ if (piece === "♖" || piece === "♜") {
         validMove = true;
     }
 }
+
+// ♙ USHTARI I BARDHË
+if (piece === "♙") {
+
+    // Një hap përpara
+    if (toCol === fromCol && toRow === fromRow - 1) {
+        validMove = true;
+    }
 
 // ♙ USHTARI I BARDHË
 if (piece === "♙") {
