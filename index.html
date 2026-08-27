@@ -209,9 +209,30 @@ squares.forEach(function(square) {
         const toCol = to % 8;
 
         const piece = selectedPiece.textContent.trim();
+        const target = this.textContent.trim();
 
         let validMove = false;
 
+        const whitePieces = "♔♕♖♗♘♙";
+        const blackPieces = "♚♛♜♝♞♟";
+
+        const isWhite = whitePieces.includes(piece);
+        const isBlack = blackPieces.includes(piece);
+        const targetIsWhite = whitePieces.includes(target);
+        const targetIsBlack = blackPieces.includes(target);
+
+        if (target !== "") {
+            if (
+                (isWhite && targetIsWhite) ||
+                (isBlack && targetIsBlack)
+            ) {
+                selectedPiece.classList.remove("selected");
+                selectedPiece = null;
+                return;
+            }
+        }
+
+        // KALI
         if (piece === "♘" || piece === "♞") {
             const rowDiff = Math.abs(toRow - fromRow);
             const colDiff = Math.abs(toCol - fromCol);
@@ -224,12 +245,14 @@ squares.forEach(function(square) {
             }
         }
 
+        // TORRA
         if (piece === "♖" || piece === "♜") {
             if (toRow === fromRow || toCol === fromCol) {
                 validMove = true;
             }
         }
 
+        // FILIZI
         if (piece === "♗" || piece === "♝") {
             const rowDiff = Math.abs(toRow - fromRow);
             const colDiff = Math.abs(toCol - fromCol);
@@ -239,6 +262,7 @@ squares.forEach(function(square) {
             }
         }
 
+        // MBRETËRESHA
         if (piece === "♕" || piece === "♛") {
             const rowDiff = Math.abs(toRow - fromRow);
             const colDiff = Math.abs(toCol - fromCol);
@@ -251,19 +275,27 @@ squares.forEach(function(square) {
                 validMove = true;
             }
         }
-if (piece === "♔" || piece === "♚") {
-    const rowDiff = Math.abs(toRow - fromRow);
-    const colDiff = Math.abs(toCol - fromCol);
 
-    if (rowDiff <= 1 && colDiff <= 1 && (rowDiff !== 0 || colDiff !== 0)) {
-        validMove = true;
-    }
-}
+        // MBRETI
+        if (piece === "♔" || piece === "♚") {
+            const rowDiff = Math.abs(toRow - fromRow);
+            const colDiff = Math.abs(toCol - fromCol);
+
+            if (
+                rowDiff <= 1 &&
+                colDiff <= 1 &&
+                (rowDiff !== 0 || colDiff !== 0)
+            ) {
+                validMove = true;
+            }
+        }
+
+        // USHTARI I BARDHË
         if (piece === "♙") {
             if (
                 toCol === fromCol &&
                 toRow === fromRow - 1 &&
-                this.textContent.trim() === ""
+                target === ""
             ) {
                 validMove = true;
             }
@@ -271,7 +303,8 @@ if (piece === "♔" || piece === "♚") {
             if (
                 Math.abs(toCol - fromCol) === 1 &&
                 toRow === fromRow - 1 &&
-                this.textContent.trim() !== ""
+                target !== "" &&
+                targetIsBlack
             ) {
                 validMove = true;
             }
@@ -281,17 +314,18 @@ if (piece === "♔" || piece === "♚") {
                 fromRow === 6 &&
                 toRow === 4 &&
                 squares[(fromRow - 1) * 8 + fromCol].textContent.trim() === "" &&
-                this.textContent.trim() === ""
+                target === ""
             ) {
                 validMove = true;
             }
         }
 
+        // USHTARI I ZI
         if (piece === "♟") {
             if (
                 toCol === fromCol &&
                 toRow === fromRow + 1 &&
-                this.textContent.trim() === ""
+                target === ""
             ) {
                 validMove = true;
             }
@@ -299,7 +333,8 @@ if (piece === "♔" || piece === "♚") {
             if (
                 Math.abs(toCol - fromCol) === 1 &&
                 toRow === fromRow + 1 &&
-                this.textContent.trim() !== ""
+                target !== "" &&
+                targetIsWhite
             ) {
                 validMove = true;
             }
@@ -309,12 +344,13 @@ if (piece === "♔" || piece === "♚") {
                 fromRow === 1 &&
                 toRow === 3 &&
                 squares[(fromRow + 1) * 8 + fromCol].textContent.trim() === "" &&
-                this.textContent.trim() === ""
+                target === ""
             ) {
                 validMove = true;
             }
         }
 
+        // LËVIZJA DHE MARRJA
         if (validMove) {
             this.textContent = selectedPiece.textContent;
             selectedPiece.textContent = "";
