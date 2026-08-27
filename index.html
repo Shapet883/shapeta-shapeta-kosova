@@ -210,7 +210,18 @@ squares.forEach(function(square) {
         const piece = selectedPiece.textContent.trim();
 
         let validMove = false;
+  // KALI
+        if (piece === "♘" || piece === "♞") {
+            const rowDiff = Math.abs(toRow - fromRow);
+            const colDiff = Math.abs(toCol - fromCol);
 
+            if (
+                (rowDiff === 2 && colDiff === 1) ||
+                (rowDiff === 1 && colDiff === 2)
+            ) {
+                validMove = true;
+            }
+        }
         if (piece === "♖" || piece === "♜") {
             if (toRow === fromRow || toCol === fromCol) {
                 validMove = true;
