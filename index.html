@@ -227,7 +227,15 @@ squares.forEach(function(square) {
                 validMove = true;
             }
         }
+ // FILIZI
+        if (piece === "♗" || piece === "♝") {
+            const rowDiff = Math.abs(toRow - fromRow);
+            const colDiff = Math.abs(toCol - fromCol);
 
+            if (rowDiff === colDiff && rowDiff !== 0) {
+                validMove = true;
+            }
+        }
         if (piece === "♙") {
             if (toCol === fromCol && toRow === fromRow - 1 && this.textContent.trim() === "") {
                 validMove = true;
