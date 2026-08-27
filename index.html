@@ -176,42 +176,11 @@ hapësira jonë për dashamirësit e shahut.
 <footer>
 SHAPETA CHESS KOSOVA 🇽🇰 — Dashamirësit e shahut në Kosovë
 </footer>
+
 <script>
 const squares = document.querySelectorAll(".square");
 
 let selectedPiece = null;
-
-const whitePieces = "♔♕♖♗♘♙";
-const blackPieces = "♚♛♜♝♞♟";
-
-function isWhite(piece) {
-    return whitePieces.includes(piece);
-}
-
-function isBlack(piece) {
-    return blackPieces.includes(piece);
-}
-
-function pathIsClear(fromRow, fromCol, toRow, toCol) {
-    const rowStep = Math.sign(toRow - fromRow);
-    const colStep = Math.sign(toCol - fromCol);
-
-    let row = fromRow + rowStep;
-    let col = fromCol + colStep;
-
-    while (row !== toRow || col !== toCol) {
-        const index = row * 8 + col;
-
-        if (squares[index].textContent.trim() !== "") {
-            return false;
-        }
-
-        row += rowStep;
-        col += colStep;
-    }
-
-    return true;
-}
 
 squares.forEach(function(square) {
     square.addEventListener("click", function() {
@@ -243,16 +212,23 @@ squares.forEach(function(square) {
 
         let validMove = false;
 
-        const targetIsWhite = isWhite(target);
-        const targetIsBlack = isBlack(target);
+        const whitePieces = "♔♕♖♗♘♙";
+        const blackPieces = "♚♛♜♝♞♟";
 
-        if (
-            (isWhite(piece) && targetIsWhite) ||
-            (isBlack(piece) && targetIsBlack)
-        ) {
-            selectedPiece.classList.remove("selected");
-            selectedPiece = null;
-            return;
+        const isWhite = whitePieces.includes(piece);
+        const isBlack = blackPieces.includes(piece);
+        const targetIsWhite = whitePieces.includes(target);
+        const targetIsBlack = blackPieces.includes(target);
+
+        if (target !== "") {
+            if (
+                (isWhite && targetIsWhite) ||
+                (isBlack && targetIsBlack)
+            ) {
+                selectedPiece.classList.remove("selected");
+                selectedPiece = null;
+                return;
+            }
         }
 
         // KALI
@@ -270,10 +246,7 @@ squares.forEach(function(square) {
 
         // TORRA
         if (piece === "♖" || piece === "♜") {
-            if (
-                (toRow === fromRow || toCol === fromCol) &&
-                pathIsClear(fromRow, fromCol, toRow, toCol)
-            ) {
+            if (toRow === fromRow || toCol === fromCol) {
                 validMove = true;
             }
         }
@@ -283,11 +256,7 @@ squares.forEach(function(square) {
             const rowDiff = Math.abs(toRow - fromRow);
             const colDiff = Math.abs(toCol - fromCol);
 
-            if (
-                rowDiff === colDiff &&
-                rowDiff !== 0 &&
-                pathIsClear(fromRow, fromCol, toRow, toCol)
-            ) {
+            if (rowDiff === colDiff && rowDiff !== 0) {
                 validMove = true;
             }
         }
@@ -298,12 +267,9 @@ squares.forEach(function(square) {
             const colDiff = Math.abs(toCol - fromCol);
 
             if (
-                (
-                    toRow === fromRow ||
-                    toCol === fromCol ||
-                    rowDiff === colDiff
-                ) &&
-                pathIsClear(fromRow, fromCol, toRow, toCol)
+                toRow === fromRow ||
+                toCol === fromCol ||
+                rowDiff === colDiff
             ) {
                 validMove = true;
             }
@@ -325,7 +291,6 @@ squares.forEach(function(square) {
 
         // USHTARI I BARDHË
         if (piece === "♙") {
-
             if (
                 toCol === fromCol &&
                 toRow === fromRow - 1 &&
@@ -356,7 +321,6 @@ squares.forEach(function(square) {
 
         // USHTARI I ZI
         if (piece === "♟") {
-
             if (
                 toCol === fromCol &&
                 toRow === fromRow + 1 &&
@@ -396,7 +360,6 @@ squares.forEach(function(square) {
     });
 });
 </script>
-
 
 </body>
 </html
