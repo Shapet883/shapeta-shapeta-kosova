@@ -179,7 +179,6 @@ SHAPETA CHESS KOSOVA 🇽🇰 — Dashamirësit e shahut në Kosovë
 
 <script>
 const squares = document.querySelectorAll(".square");
-
 let selectedPiece = null;
 
 squares.forEach(function(square) {
@@ -191,175 +190,206 @@ squares.forEach(function(square) {
                 this.classList.add("selected");
             }
             return;
-        }
+        }<script>
+const s = document.querySelectorAll(".square");
+let p = null;
 
-        if (this === selectedPiece) {
-            this.classList.remove("selected");
-            selectedPiece = null;
+const w = "♔♕♖♗♘♙";
+const b = "♚♛♜♝♞♟";
+
+function cw(x) {
+    return w.includes(x);
+}
+
+function cb(x) {
+    return b.includes(x);
+}
+
+function clear(a, d, z, q) {
+    const r = Math.sign(z - a);
+    const c = Math.sign(q - d);
+
+    let y = a + r;
+    let x = d + c;
+
+    while (y !== z || x !== q) {
+        if (s[y * 8 + x].textContent.trim() !== "") {
+            return false;
+        }
+        y += r;
+        x += c;
+    }
+
+    return true;
+}
+
+s.forEach(function(x) {
+    x.addEventListener("click", function() {
+
+        if (p === null) {
+            if (this.textContent.trim() !== "") {
+                p = this;
+                this.classList.add("selected");
+            }
             return;
         }
 
-        const from = Array.from(squares).indexOf(selectedPiece);
-        const to = Array.from(squares).indexOf(this);
+        if (this === p) {
+            this.classList.remove("selected");
+            p = null;
+            return;
+        }
 
-        const fromRow = Math.floor(from / 8);
-        const fromCol = from % 8;
-        const toRow = Math.floor(to / 8);
-        const toCol = to % 8;
+        const a = Array.from(s).indexOf(p);
+        const d = Array.from(s).indexOf(this);
 
-        const piece = selectedPiece.textContent.trim();
-        const target = this.textContent.trim();
+        const r1 = Math.floor(a / 8);
+        const c1 = a % 8;
+        const r2 = Math.floor(d / 8);
+        const c2 = d % 8;
 
-        let validMove = false;
+        const f = p.textContent.trim();
+        const t = this.textContent.trim();
 
-        const whitePieces = "♔♕♖♗♘♙";
-        const blackPieces = "♚♛♜♝♞♟";
+        let ok = false;
 
-        const isWhite = whitePieces.includes(piece);
-        const isBlack = blackPieces.includes(piece);
-        const targetIsWhite = whitePieces.includes(target);
-        const targetIsBlack = blackPieces.includes(target);
+        if (
+            (cw(f) && cw(t)) ||
+            (cb(f) && cb(t))
+        ) {
+            p.classList.remove("selected");
+            p = null;
+            return;
+        }
 
-        if (target !== "") {
+        if (f === "♘" || f === "♞") {
+            const r = Math.abs(r2 - r1);
+            const c = Math.abs(c2 - c1);
+
             if (
-                (isWhite && targetIsWhite) ||
-                (isBlack && targetIsBlack)
+                (r === 2 && c === 1) ||
+                (r === 1 && c === 2)
             ) {
-                selectedPiece.classList.remove("selected");
-                selectedPiece = null;
-                return;
+                ok = true;
             }
         }
 
-        // KALI
-        if (piece === "♘" || piece === "♞") {
-            const rowDiff = Math.abs(toRow - fromRow);
-            const colDiff = Math.abs(toCol - fromCol);
-
+        if (f === "♖" || f === "♜") {
             if (
-                (rowDiff === 2 && colDiff === 1) ||
-                (rowDiff === 1 && colDiff === 2)
+                (r1 === r2 || c1 === c2) &&
+                clear(r1, c1, r2, c2)
             ) {
-                validMove = true;
+                ok = true;
             }
         }
 
-        // TORRA
-        if (piece === "♖" || piece === "♜") {
-            if (toRow === fromRow || toCol === fromCol) {
-                validMove = true;
+        if (f === "♗" || f === "♝") {
+            const r = Math.abs(r2 - r1);
+            const c = Math.abs(c2 - c1);
+
+            if (
+                r === c &&
+                r !== 0 &&
+                clear(r1, c1, r2, c2)
+            ) {
+                ok = true;
             }
         }
 
-        // FILIZI
-        if (piece === "♗" || piece === "♝") {
-            const rowDiff = Math.abs(toRow - fromRow);
-            const colDiff = Math.abs(toCol - fromCol);
+        if (f === "♕" || f === "♛") {
+            const r = Math.abs(r2 - r1);
+            const c = Math.abs(c2 - c1);
 
-            if (rowDiff === colDiff && rowDiff !== 0) {
-                validMove = true;
+            if (
+                (
+                    r1 === r2 ||
+                    c1 === c2 ||
+                    r === c
+                ) &&
+                clear(r1, c1, r2, c2)
+            ) {
+                ok = true;
             }
         }
 
-        // MBRETËRESHA
-        if (piece === "♕" || piece === "♛") {
-            const rowDiff = Math.abs(toRow - fromRow);
-            const colDiff = Math.abs(toCol - fromCol);
+        if (f === "♔" || f === "♚") {
+            const r = Math.abs(r2 - r1);
+            const c = Math.abs(c2 - c1);
 
             if (
-                toRow === fromRow ||
-                toCol === fromCol ||
-                rowDiff === colDiff
+                r <= 1 &&
+                c <= 1 &&
+                (r !== 0 || c !== 0)
             ) {
-                validMove = true;
+                ok = true;
             }
         }
 
-        // MBRETI
-        if (piece === "♔" || piece === "♚") {
-            const rowDiff = Math.abs(toRow - fromRow);
-            const colDiff = Math.abs(toCol - fromCol);
+        if (f === "♙") {
+            if (
+                c1 === c2 &&
+                r2 === r1 - 1 &&
+                t === ""
+            ) {
+                ok = true;
+            }
 
             if (
-                rowDiff <= 1 &&
-                colDiff <= 1 &&
-                (rowDiff !== 0 || colDiff !== 0)
+                Math.abs(c2 - c1) === 1 &&
+                r2 === r1 - 1 &&
+                cb(t)
             ) {
-                validMove = true;
+                ok = true;
+            }
+
+            if (
+                c1 === c2 &&
+                r1 === 6 &&
+                r2 === 4 &&
+                s[(r1 - 1) * 8 + c1].textContent.trim() === "" &&
+                t === ""
+            ) {
+                ok = true;
             }
         }
 
-        // USHTARI I BARDHË
-        if (piece === "♙") {
+        if (f === "♟") {
             if (
-                toCol === fromCol &&
-                toRow === fromRow - 1 &&
-                target === ""
+                c1 === c2 &&
+                r2 === r1 + 1 &&
+                t === ""
             ) {
-                validMove = true;
+                ok = true;
             }
 
             if (
-                Math.abs(toCol - fromCol) === 1 &&
-                toRow === fromRow - 1 &&
-                target !== "" &&
-                targetIsBlack
+                Math.abs(c2 - c1) === 1 &&
+                r2 === r1 + 1 &&
+                cw(t)
             ) {
-                validMove = true;
+                ok = true;
             }
 
             if (
-                toCol === fromCol &&
-                fromRow === 6 &&
-                toRow === 4 &&
-                squares[(fromRow - 1) * 8 + fromCol].textContent.trim() === "" &&
-                target === ""
+                c1 === c2 &&
+                r1 === 1 &&
+                r2 === 3 &&
+                s[(r1 + 1) * 8 + c1].textContent.trim() === "" &&
+                t === ""
             ) {
-                validMove = true;
+                ok = true;
             }
         }
 
-        // USHTARI I ZI
-        if (piece === "♟") {
-            if (
-                toCol === fromCol &&
-                toRow === fromRow + 1 &&
-                target === ""
-            ) {
-                validMove = true;
-            }
-
-            if (
-                Math.abs(toCol - fromCol) === 1 &&
-                toRow === fromRow + 1 &&
-                target !== "" &&
-                targetIsWhite
-            ) {
-                validMove = true;
-            }
-
-            if (
-                toCol === fromCol &&
-                fromRow === 1 &&
-                toRow === 3 &&
-                squares[(fromRow + 1) * 8 + fromCol].textContent.trim() === "" &&
-                target === ""
-            ) {
-                validMove = true;
-            }
+        if (ok) {
+            this.textContent = f;
+            p.textContent = "";
         }
 
-        // LËVIZJA DHE MARRJA
-        if (validMove) {
-            this.textContent = selectedPiece.textContent;
-            selectedPiece.textContent = "";
-        }
-
-        selectedPiece.classList.remove("selected");
-        selectedPiece = null;
+        p.classList.remove("selected");
+        p = null;
     });
 });
 </script>
-
 </body>
 </html
