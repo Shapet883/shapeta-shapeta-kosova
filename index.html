@@ -177,6 +177,7 @@ hapësira jonë për dashamirësit e shahut.
 SHAPETA CHESS KOSOVA 🇽🇰 — Dashamirësit e shahut në Kosovë
 </footer>
 
+
 <script>
 const squares = document.querySelectorAll(".square");
 
@@ -210,7 +211,7 @@ squares.forEach(function(square) {
         const piece = selectedPiece.textContent.trim();
 
         let validMove = false;
-  // KALI
+
         if (piece === "♘" || piece === "♞") {
             const rowDiff = Math.abs(toRow - fromRow);
             const colDiff = Math.abs(toCol - fromCol);
@@ -222,12 +223,13 @@ squares.forEach(function(square) {
                 validMove = true;
             }
         }
+
         if (piece === "♖" || piece === "♜") {
             if (toRow === fromRow || toCol === fromCol) {
                 validMove = true;
             }
         }
- // FILIZI
+
         if (piece === "♗" || piece === "♝") {
             const rowDiff = Math.abs(toRow - fromRow);
             const colDiff = Math.abs(toCol - fromCol);
@@ -236,12 +238,34 @@ squares.forEach(function(square) {
                 validMove = true;
             }
         }
+
+        if (piece === "♕" || piece === "♛") {
+            const rowDiff = Math.abs(toRow - fromRow);
+            const colDiff = Math.abs(toCol - fromCol);
+
+            if (
+                toRow === fromRow ||
+                toCol === fromCol ||
+                rowDiff === colDiff
+            ) {
+                validMove = true;
+            }
+        }
+
         if (piece === "♙") {
-            if (toCol === fromCol && toRow === fromRow - 1 && this.textContent.trim() === "") {
+            if (
+                toCol === fromCol &&
+                toRow === fromRow - 1 &&
+                this.textContent.trim() === ""
+            ) {
                 validMove = true;
             }
 
-            if (Math.abs(toCol - fromCol) === 1 && toRow === fromRow - 1 && this.textContent.trim() !== "") {
+            if (
+                Math.abs(toCol - fromCol) === 1 &&
+                toRow === fromRow - 1 &&
+                this.textContent.trim() !== ""
+            ) {
                 validMove = true;
             }
 
@@ -257,11 +281,19 @@ squares.forEach(function(square) {
         }
 
         if (piece === "♟") {
-            if (toCol === fromCol && toRow === fromRow + 1 && this.textContent.trim() === "") {
+            if (
+                toCol === fromCol &&
+                toRow === fromRow + 1 &&
+                this.textContent.trim() === ""
+            ) {
                 validMove = true;
             }
 
-            if (Math.abs(toCol - fromCol) === 1 && toRow === fromRow + 1 && this.textContent.trim() !== "") {
+            if (
+                Math.abs(toCol - fromCol) === 1 &&
+                toRow === fromRow + 1 &&
+                this.textContent.trim() !== ""
+            ) {
                 validMove = true;
             }
 
