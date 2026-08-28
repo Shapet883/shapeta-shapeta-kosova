@@ -170,7 +170,15 @@ hapësira jonë për dashamirësit e shahut.
 <div class="square dark">♗</div>
 <div class="square light">♘</div>
 <div class="square dark">♖</div>
+<footer>
 
 </div>
+<footer>
+SHAPETA CHESS KOSOVA 🇽🇰 — Dashamirësit e shahut në Kosovë
+</footer>
 
-<scr ipt> const s = document.querySelectorAll(".square"); let p = null; const w = "♔♕♖♗♘♙"; const b = "♚♛♜♝♞♟"; function cw(x) { return w.includes(x); } function cb(x) { return b.includes(x); } function clearpath(r1, c1, r2, c2) { const dr = Math.sign(r2 - r1); const dc = Math.sign(c2 - c1); let r = r1 + dr; let c = c1 + dc; while (r !== r2 || c !== c2) { if (s[r * 8 + c].textContent.trim() !== "") { return false; } r += dr; c += dc; } return true; } s.forEach(function(square) { square.addEventListener("click", function() { if (p === null) { if (this.textContent.trim() !== "") { p = this; p.classList.add("selected"); } return; } if (this === p) { p.classList.remove("selected"); p = null; return; } const from = Array.from(s).indexOf(p); const to = Array.from(s).indexOf(this); const r1 = Math.floor(from / 8); const c1 = from % 8; const r2 = Math.floor(to / 8); const c2 = to % 8; const piece = p.textContent.trim(); const target = this.textContent.trim(); let ok = false; if ((cw(piece) && cw(target)) || (cb(piece) && cb(target))) { p.classList.remove("selected"); p = null; return; } if (piece === "♘" || piece === "♞") { const dr = Math.abs(r2 - r1); const dc = Math.abs(c2 - c1); if ((dr === 2 && dc === 1) || (dr === 1 && dc === 2)) { ok = true; } } if (piece === "♖" || piece === "♜") { if ( (r1 === r2 || c1 === c2) && clearpath(r1, c1, r2, c2) ) { ok = true; } } if (piece === "♗" || piece === "♝") { const dr = Math.abs(r2 - r1); const dc = Math.abs(c2 - c1); if ( dr === dc && dr !== 0 && clearpath(r1, c1, r2, c2) ) { ok = true; } } if (piece === "♕" || piece === "♛") { const dr = Math.abs(r2 - r1); const dc = Math.abs(c2 - c1); if ( (r1 === r2 || c1 === c2 || dr === dc) && clearpath(r1, c1, r2, c2) ) { ok = true; } } if (piece === "♔" || piece === "♚") { const dr = Math.abs(r2 - r1); const dc = Math.abs(c2 - c1); if (dr <= 1 && dc <= 1 && (dr !== 0 || dc !== 0)) { ok = true; } } if (piece === "♙") { if (c1 === c2 && r2 === r1 - 1 && target === "") { ok = true; } if ( Math.abs(c2 - c1) === 1 && r2 === r1 - 1 && cb(target) ) { ok = true; } if ( c1 === c2 && r1 === 6 && r2 === 4 && s[(r1 - 1) * 8 + c1].textContent.trim() === "" && target === "" ) { ok = true; } } if (piece === "♟") { if (c1 === c2 && r2 === r1 + 1 && target === "") { ok = true; } if ( Math.abs(c2 - c1) === 1 && r2 === r1 + 1 && cw(target) ) { ok = true; } if ( c1 === c2 && r1 === 1 && r2 === 3 && s[(r1 + 1) * 8 + c1].textContent.trim() === "" && target === "" ) { ok = true; } } if (ok) { this.textContent = piece; p.textContent = ""; } p.classList.remove("selected"); p = null; }); }); </script>
+
+</script>
+
+</body>
+</html>
