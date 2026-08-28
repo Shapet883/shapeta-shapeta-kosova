@@ -213,23 +213,7 @@ function cp(r1, c1, r2, c2) {
 
     return true;
 }
-    const rs = Math.sign(r2 - r1);
-    const cs = Math.sign(c2 - c1);
 
-    let r = r1 + rs;
-    let c = c1 + cs;
-
-    while (r !== r2 || c !== c2) {
-        if (s[r * 8 + c].textContent.trim() !== "") {
-            return false;
-        }
-
-        r += rs;
-        c += cs;
-    }
-
-    return true;
-}
 
 s.forEach(function(x) {
     x.addEventListener("click", function() {
