@@ -196,6 +196,29 @@ function cp(r1, c1, r2, c2) {
     let c = c1 + cs;
 
     while (r !== r2 || c !== c2) {
+        const i = r * 8 + c;
+
+        if (i < 0 || i >= s.length) {
+            return false;
+        }
+
+        if (s[i].textContent.trim() !== "") {
+            return false;
+        }
+
+        r += rs;
+        c += cs;
+    }
+
+    return true;
+}
+    const rs = Math.sign(r2 - r1);
+    const cs = Math.sign(c2 - c1);
+
+    let r = r1 + rs;
+    let c = c1 + cs;
+
+    while (r !== r2 || c !== c2) {
         if (s[r * 8 + c].textContent.trim() !== "") {
             return false;
         }
