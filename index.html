@@ -170,12 +170,36 @@ hapësira jonë për dashamirësit e shahut.
 <div class="square light">♘</div>
 <div class="square dark">♖</div>
 
-</div>
-
-<footer>
-SHAPETA CHESS KOSOVA 🇽🇰 — Dashamirësit e shahut në Kosovë
 </footer>
+<script>
+const s = document.querySelectorAll(".square");
+let p = null;
+
+s.forEach(function(x) {
+    x.addEventListener("click", function() {
+
+        if (p === null) {
+            if (this.textContent.trim() !== "") {
+                p = this;
+                this.classList.add("selected");
+            }
+            return;
+        }
+
+        if (this === p) {
+            this.classList.remove("selected");
+            p = null;
+            return;
+        }
+
+        this.textContent = p.textContent;
+        p.textContent = "";
+
+        p.classList.remove("selected");
+        p = null;
+    });
+});
+</script>
 
 </body>
 </html>
-
