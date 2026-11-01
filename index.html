@@ -1,5 +1,4 @@
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="sq">
 <head>
 <meta charset="UTF-8">
@@ -14,7 +13,8 @@ margin: 14px 0;
 padding: 10px 22px;
 display: inline-block;
 border: 2px solid #ffffff;
-border-radius: 14px;
+border-radius: 14px; 
+ 
 background: #333333;
 color: #ffffff;
 min-height: 20px;
@@ -37,10 +37,10 @@ body {
     font-weight: bold;
     letter-spacing: 0;
     text-shadow:
-        2px 2px 4px #000,
-        0 0 8px rgba(255,255,255,0.15);
+    2px 2px 4px #000,
+    0 0 8px rgba(255,255,255,0.15);
 
-   display: flex;
+display: flex;
 align-items: center;
 justify-content: center;
 width: 100%;
@@ -89,12 +89,12 @@ transform: none;
     color: #ffffff;
 
     text-shadow:
-        2px 0 0 #000,
-        -2px 0 0 #000,
-        0 2px 0 #000,
-        0 -2px 0 #000,
-        1px 1px 2px #000,
-        0 0 50px #000;
+    2px 0 0 #000,
+   -2px 0 0 #000,
+    0 2px 0 #000,
+    0 -2px 0 #000,
+    1px 1px 2px #000,
+    0 0 50px #000;
 }
 
 .black-piece {
@@ -146,12 +146,12 @@ box-shadow: inset 0 0 0 2px rgba(255, 0, 0, 0.3);
 
 
 /* KOORDINATAT */
-
 .square[data-file]::after {
     content: attr(data-file);
     position: absolute;
     bottom: 3px;
-    right: 4px;
+    left: 4px;
+right: auto;
 
     font-size: 13px;
     font-weight: bold;
@@ -170,7 +170,8 @@ box-shadow: inset 0 0 0 2px rgba(255, 0, 0, 0.3);
     content: attr(data-rank);
     position: absolute;
     top: 3px;
-    right: 4px;
+    right: 4px !important;
+left: auto !important;
     font-size: 13px;
     font-weight: bold;
     color: #fff;
@@ -184,9 +185,8 @@ box-shadow: inset 0 0 0 2px rgba(255, 0, 0, 0.3);
 /* KOORDINATAT KUR ZI ËSHTË POSHTË */
 #board.board-flipped .square[data-file]::after {
     bottom: 3px;
-    right: 4px;
-    top: auto;
-    left: auto;
+    left: 4px;
+right: auto;
 }
 
 #board.board-flipped .square[data-rank]::before {
@@ -195,7 +195,15 @@ box-shadow: inset 0 0 0 2px rgba(255, 0, 0, 0.3);
     bottom: auto;
     left: auto;
 }
-#newGameButton {
+/* RROTULLIMI I TABELËS DHE FIGURAVE */
+#board.board-flipped {
+    transform: rotate(180deg);
+}
+
+#board.board-flipped .square {
+    transform: rotate(180deg);
+}
+ #newGameButton {
     width: 38px;
     height: 30px;
     margin: 10px 0 20px 0;
@@ -238,34 +246,34 @@ margin: 0 0 5px 0;
     border: 2px solid #ffffff;
     border-radius: 10px;
 
-    flex-shrink: 0;
+flex-shrink: 0;
 }
-
-/* TABELA NË KOMPJUTER */
+/* TABELA NE KOMPJUTER */
 @media (min-width: 601px) {
-   #board {
-   width: 520px;
-   height: 520px;
-   display: grid;
-   grid-template-columns: repeat(8, 1fr);
-   grid-template-rows: repeat(8, 1fr);
-   border: 7px solid #111 !important;
-   outline: 3px solid #d4af37 !important;
-   outline-offset: 3px !important; 
-   box-sizing: border-box;
-   box-shadow: none !important;
-   margin: 0 auto !important;
-}
-
-    .square {
-        width: 65px;
-        height: 65px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    #board {
+        width: 520px;
+        height: 520px;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+        border: 7px solid #111 !important;
+        outline: 3px solid #d4af37 !important;
+        outline-offset: 3px !important;
         box-sizing: border-box;
-        font-size: 56px;
+        box-shadow: none !important;
+        margin: 0 auto !important;
     }
+    .square {
+     position: relative !important;
+     width: 100%;
+     height: 100%;
+
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     box-sizing: border-box;
+     font-size: 56px;
+}
 
     .light {
         background: #ddd3c4;
@@ -323,7 +331,9 @@ margin: 0 0 5px 0;
     font-size: clamp(50px, 16vw, 100px);
     box-sizing: border-box;
     border: none !important;
+ position: relative !important;
 }
+
 .white-piece,
 .black-piece {
     font-family: "Times New Roman", serif !important;
@@ -377,7 +387,16 @@ margin: 0 0 5px 0;
     padding: 6px 10px;
     color: #b98f58 !important;
 }
-
+@media (min-width: 601px) {
+    #blackClock,
+    #whiteClock {
+        width: 150px !important;
+        max-width: 150px !important;
+        box-sizing: border-box;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
 #moveHistory {
 width: min(500px, 92vw);
 height: 220px;
@@ -417,31 +436,29 @@ overflow-y: auto;
     letter-spacing: 0.3px;
 }
 #blackClock,
-    
 #whiteClock {
-font-size: 22px;
-font-weight: bold;
-margin: 8px auto;
-padding: 6px 12px;
-display: block;
-width: 190px;
-box-sizing: border-box;
-border: none !important;
-background: #333;
-color: #fff;
-white-space: nowrap;
-text-align: center;
-text-shadow:
- 0 0 2px #fff;
- box-shadow:
- 0 0 8px rgba(255,255,255,0.15);
+    font-size: 22px;
+    font-weight: bold;
+    margin: 8px auto;
+    padding: 6px 12px;
+    display: block;
+    width: 150px !important;
+    max-width: 150px !important;
+    box-sizing: border-box;
+    border: none !important;
+    background: #333;
+    color: #fff;
+    white-space: nowrap;
+    text-align: center;
+    text-shadow: 0 0 2px #fff;
+    box-shadow: 0 0 8px rgba(255,255,255,0.15);
 }
 .clock-active {
     background: #555 !important;
     border: 2px solid #66b3ff !important;
     border-radius: 8px !important;
     box-shadow: 0 0 12px 3px rgba(102, 179, 255, 0.45);
-} 
+}
 #blackFirstMove.first-move-danger,
 #whiteFirstMove.first-move-danger {
     color: #fff !important;
@@ -572,7 +589,8 @@ padding-right: 10px;
     border: 3px solid #ff2222 !important;
     background: #222 !important;
 }
-/* HIJA E LËVIZJES SË FUNDIT */
+
+ /* HIJA E LËVIZJES SË FUNDIT */
 .last-move {
     box-shadow:
         inset 0 0 0 4px #d4af37 !important,
@@ -707,30 +725,34 @@ min-height: 130px;
 }
 
 .promotion-piece {
-    width: 72px;
-    height: 72px;
+    width: 104px;
+    height: 104px;
     padding: 0;
     border: 2px solid #777;
     border-radius: 7px;
     background: #eee;
     font-family: "Times New Roman", serif;
-    font-size: 52px;
+    font-size: 76px;
     cursor: pointer;
 }
-@media (min-width: 601px) {
+
+ @media (min-width: 601px) {
     .promotion-box {
-        gap: 22px;
+        gap: 12px;
         padding: 22px;
-        min-width: 350px;
-        min-height: 135px;
+        min-width: 520px;
+        min-height: 160px;
     }
 
-    .promotion-piece {
-        width: 76px;
-        height: 76px;
-        font-size: 56px;
-    }
+ .promotion-piece {
+    width: 42px !important;
+    height: 42px !important;
+    padding: 0;
+    font-size: 32px !important;
+    flex: 0 0 42px !important;
+    box-sizing: border-box;
 }
+}     
 /* QENDRIMI I TITULLIT NE KOMPJUTER */
 @media (min-width: 700px) {
 .main-title {
@@ -759,23 +781,22 @@ padding-left: 0px;
 
 @media (max-width: 600px) {
     .promotion-box {
-        gap: 1px;
-        padding: 2px;
+        gap: 8px;
+        padding: 10px;
         min-width: 0;
         min-height: 0;
         width: max-content;
-        max-width: none;
-        transform: scale(0.7);
-        transform-origin: top left;
+        max-width: 100%;
+        transform: none;
         box-sizing: border-box;
     }
 
     .promotion-piece {
-        width: 34px;
-        height: 40px;
+        width: 70px;
+        height: 70px;
         padding: 0;
-        font-size: 27px;
-        flex: 0 0 34px;
+        font-size: 52px;
+        flex: 0 0 70px;
         box-sizing: border-box;
     }
 }
@@ -791,34 +812,35 @@ color: #66b3ff !important;
 /* RREGULLIMI NË KOMPJUTER */
 @media (min-width: 601px) {
 
-    #clockBoardArea {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        width: 100%;
-        margin: 0 auto;
-    }
+   #clockBoardArea {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: fit-content;
+    margin: 0 auto;
+}
 
-    #gameArea {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        justify-content: center;
-        gap: 25px;
-        width: 100%;
-        margin: 20px auto;
-    }
+ #gameArea {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0;
+    width: fit-content;
+    margin: 20px 0;
+}
 
     #board {
         flex-shrink: 0;
     }
-
-    #sidePanel {
+#sidePanel {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    width: 300px;
+    gap: 3px;
+    width: 180px;
+    flex-shrink: 0;
+    margin-left: -25px;
 }
 
 #newGameButton {
@@ -887,32 +909,24 @@ color: #66b3ff !important;
     padding: 6px 12px !important;
     margin: 8px auto !important;
 }
-#whiteClock.clock-active,
-#blackClock.clock-active {
-    border: 3px solid #66b3ff !important;
-    border-radius: 8px !important;
-    box-shadow:
-        0 0 8px #66b3ff,
-        0 0 18px #66b3ff !important;
-}
-
-/* KËTU FILLON PJESA E RE PËR TELEFON */
+ 
+ /* KËTU FILLON PJESA E RE PËR TELEFON */
 
 @media (max-width: 600px) {
 
    #clockBoardArea {
     display: grid;
-    grid-template-columns: 70px 1fr 150px;
+    grid-template-columns: 70px 1fr 5px;
     grid-template-areas:
-        "blackFirst blackClock newGame"
-        "board board board"
-       "whiteFirst whiteClock whiteClock"
-"moveHistory moveHistory moveHistory"; 
+    "blackFirst blackClock newGame"
+    "board board board"
+    "whiteFirst whiteClock whiteClock"
+    "moveHistory moveHistory moveHistory";
     align-items: end;
     justify-items: center;
     width: 100%;
     gap: 8px;
-transform: translateX(-10px);
+transform: translateX(0);
    } 
 
     #gameArea,
@@ -921,10 +935,7 @@ transform: translateX(-10px);
     #whiteClockArea {
         display: contents;
     }
-
-    #blackFirstMove {
-        grid-area: blackFirst;
-    }
+#blackFirstMove { grid-area: blackClock; }
 
     #blackClock {
         grid-area: blackClock;
@@ -947,33 +958,43 @@ transform: translateX(-10px);
 #newGameButton {
     align-self: center !important;
 }
-
 #blackFirstMove,
 #blackClock {
-    transform: translateX(50px);
+    transform: translateX(-20px);
+}
+
+#blackFirstMove {
+ position: relative;
+ left: -35px;
+ z-index: 2;
+ width: 28px;
+ text-align: center;
 }
 
 #newGameButton {
-    transform: translateY(00);
+  transform: translate(-25px, 0);
 }
    
  #board {
         grid-area: board;
     }
 
-    #whiteFirstMove {
-        grid-area: whiteFirst;
-    }
+#whiteFirstMove { grid-area: whiteClock; } 
 
     #whiteClock {
         grid-area: whiteClock;
     }
 #whiteFirstMove {
-    transform: translate(50px, -6px);
+    transform: translate(-25px, 0);
+    position: relative;
+    left: -45px;
+    z-index: 2;
+    width: 20px;
+    text-align: center;
+    align-self: center !important;
 }
-
 #whiteClock {
-    transform: translateX(-20px);
+    transform: translateX(-30px);
 }
    #moveHistory {
     grid-area: moveHistory;
@@ -983,7 +1004,7 @@ transform: translateX(-10px);
     margin: 0 auto !important;
 }
 #clockBoardArea.clock-flipped #blackFirstMove {
-    grid-area: whiteFirst;
+    grid-area: whiteClock;
 }
 
 #clockBoardArea.clock-flipped #blackClock {
@@ -991,30 +1012,26 @@ transform: translateX(-10px);
 }
 
 #clockBoardArea.clock-flipped #whiteFirstMove {
-    grid-area: blackFirst;
+    grid-area: blackClock;
 }
 
 #clockBoardArea.clock-flipped #whiteClock {
     grid-area: blackClock;
-    transform: translateX(50px);
 }
-
-#clockBoardArea.clock-flipped #blackClock {
-    grid-area: whiteClock;
-    transform: translateX(-20px);
-}    
-  #whiteClock.clock-active.clock-danger,
-    #blackClock.clock-active.clock-danger {
-        border: 3px solid #ff2222 !important;
-        background: #222 !important;
-        color: #fff !important;
-        box-shadow:
-            0 0 8px #ff2222 !important,
-            0 0 18px #ff2222 !important,
-            0 0 30px rgba(255, 34, 34, 0.8) !important;
-    }
+#whiteClock.clock-active.clock-danger,
+#blackClock.clock-active.clock-danger,
+#whiteClock.first-move-danger,
+#blackClock.first-move-danger {
+    border: 3px solid #ff2222 !important;
+    background: #222 !important;
+    color: #fff !important;
+    box-shadow:
+        0 0 8px #ff2222 !important,
+        0 0 18px #ff2222 !important,
+        0 0 30px rgba(255, 34, 34, 0.8) !important;
+}
 #blackFirstMove {
-    grid-area: blackFirst;
+    grid-area: blackClock;
 }
 
 .light.selected,
@@ -1024,7 +1041,15 @@ transform: translateX(-10px);
         inset 0 0 0 3px rgba(255, 255, 255, 0.75),
         inset 0 0 10px rgba(0, 0, 0, 0.25) !important;
 }
-}  
+
+/* RREGULLIMI I ORËVE KUR TABELA RROTULLOHET */
+#clockBoardArea.clock-flipped #blackClock,
+#clockBoardArea.clock-flipped #whiteClock,
+#clockBoardArea.clock-flipped #blackFirstMove,
+#clockBoardArea.clock-flipped #whiteFirstMove {
+    transform: none !important;
+}
+} 
 /* RREGULLIMI STATIK NË KOMPJUTER */
 @media (min-width: 601px) {
 
@@ -1093,15 +1118,20 @@ transform: translateX(-10px);
 #blackFirstMove,
 #whiteFirstMove {
     display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     width: 45px !important;
+    min-width: 45px !important;
+    color: #ffffff !important;
+    font-size: 18px !important;
     text-align: center !important;
     margin: 0 !important;
+    padding: 0 !important;
+    flex-shrink: 0 !important;
 }
-} 
-
 @media (min-width: 601px) {
     #gameArea {
-        justify-content: center !important;
+       justify-content: flex-start !important; 
     }
 
     #board {
@@ -1109,7 +1139,19 @@ transform: translateX(-10px);
         flex: 0 0 520px !important;
     }
 }
-
+/* ALARMI I KUQ NË KOMPJUTER */
+@media (min-width: 601px) {
+    #whiteClock.first-move-danger,
+    #blackClock.first-move-danger {
+        border: 3px solid #ff2222 !important;
+        background: #222 !important;
+        color: #fff !important;
+        box-shadow:
+            0 0 8px #ff2222,
+            0 0 18px #ff2222,
+            0 0 30px rgba(255, 34, 34, 0.8) !important;
+    }
+}
 </style>
 </head>
 <body>
@@ -1192,8 +1234,8 @@ let blackKingMoved = false;
 
 /* 25 SEKONDA PËR LËVIZJEN E PARË */
 
-let whiteFirstMoveTime = 25;
-let blackFirstMoveTime = 25;
+let whiteFirstMoveTime = 59;
+let blackFirstMoveTime = 59;
 
 let whiteFirstMoveDone = false;
 let blackFirstMoveDone = false;
@@ -1241,36 +1283,24 @@ document.getElementById("whiteClock")
     .style.removeProperty("box-shadow");
 /* ORA AKTIVE */
 
-if (whiteTurn) {
+const clock = document.getElementById(
+    whiteTurn ? "whiteClock" : "blackClock"
+);
 
-    const clock = document.getElementById("whiteClock");
+clock.classList.add("clock-active");
 
-    clock.classList.add("clock-active");
-
-    clock.style.setProperty(
-        "border",
-        "3px solid #72c98a",
-        "important"
-    );
-
+if (clock.classList.contains("first-move-danger")) {
+    clock.style.setProperty("border", "3px solid #ff2222", "important");
     clock.style.setProperty(
         "box-shadow",
-        "0 0 6px #8acfa0, 0 0 12px #72c98a",
+        "0 0 8px #ff2222, 0 0 18px #ff2222, 0 0 30px rgba(255,34,34,0.8)",
         "important"
     );
-
+} else if (window.matchMedia("(min-width: 601px)").matches) {
+    clock.style.setProperty("border", "none", "important");
+    clock.style.setProperty("box-shadow", "none", "important");
 } else {
-
-    const clock = document.getElementById("blackClock");
-
-    clock.classList.add("clock-active");
-
-    clock.style.setProperty(
-        "border",
-        "3px solid #72c98a",
-        "important"
-    );
-
+    clock.style.setProperty("border", "3px solid #72c98a", "important");
     clock.style.setProperty(
         "box-shadow",
         "0 0 6px #8acfa0, 0 0 12px #72c98a",
@@ -1321,77 +1351,48 @@ if (!whiteTurn && blackTime <= 10) {
 }
 function updateFirstMoveClock() {
 
-    document.getElementById("whiteFirstMove").textContent =
-        whiteFirstMoveTime;
+    const whiteCount = document.getElementById("whiteFirstMove");
+    const blackCount = document.getElementById("blackFirstMove");
+    const whiteClock = document.getElementById("whiteClock");
+    const blackClock = document.getElementById("blackClock");
 
-    document.getElementById("blackFirstMove").textContent =
-        blackFirstMoveTime;
+    whiteCount.textContent = whiteFirstMoveTime;
+    blackCount.textContent = blackFirstMoveTime;
 
+    if (window.matchMedia("(min-width: 601px)").matches) {
 
-    const whiteClock =
-        document.getElementById("whiteFirstMove");
+        whiteCount.style.display = "block";
+        blackCount.style.display = "block";
 
-    const blackClock =
-        document.getElementById("blackFirstMove");
+        whiteCount.style.visibility =
+            !whiteFirstMoveDone && whiteTurn ? "visible" : "hidden";
 
+        blackCount.style.visibility =
+            !blackFirstMoveDone && !whiteTurn ? "visible" : "hidden";
 
-    /* HIQ ALARMIN */
+    } else {
 
-    whiteClock.classList.remove("first-move-danger");
-    blackClock.classList.remove("first-move-danger");
+        whiteCount.style.display =
+            !whiteFirstMoveDone && whiteTurn ? "block" : "none";
 
-    whiteClock.style.removeProperty("border");
-    whiteClock.style.removeProperty("box-shadow");
+        blackCount.style.display =
+            !blackFirstMoveDone && !whiteTurn ? "block" : "none";
+    }
 
-    blackClock.style.removeProperty("border");
-    blackClock.style.removeProperty("box-shadow");
-
-
-    /* KUQ - 10 SEKONDAT E FUNDIT */
-
-    if (
+    whiteClock.classList.toggle(
+        "first-move-danger",
         !whiteFirstMoveDone &&
-        whiteFirstMoveTime <= 10
-    ) {
+        whiteFirstMoveTime <= 45 &&
+        whiteFirstMoveTime >= 35
+    );
 
-        whiteClock.classList.add("first-move-danger");
-
-        whiteClock.style.setProperty(
-            "border",
-            "3px solid #ff2222",
-            "important"
-        );
-
-        whiteClock.style.setProperty(
-            "box-shadow",
-            "0 0 8px #ff2222, 0 0 18px #ff2222, 0 0 30px rgba(255,34,34,0.8)",
-            "important"
-        );
-    }
-
-
-    if (
+    blackClock.classList.toggle(
+        "first-move-danger",
         !blackFirstMoveDone &&
-        blackFirstMoveTime <= 10
-    ) {
-
-        blackClock.classList.add("first-move-danger");
-
-        blackClock.style.setProperty(
-            "border",
-            "3px solid #ff2222",
-            "important"
-        );
-
-        blackClock.style.setProperty(
-            "box-shadow",
-            "0 0 8px #ff2222, 0 0 18px #ff2222, 0 0 30px rgba(255,34,34,0.8)",
-            "important"
-        );
-    }
+        blackFirstMoveTime <= 45 &&
+        blackFirstMoveTime >= 35
+    );
 }
-
-
 
 /* FILLON NUMËRIMI 25 SEKONDA */
 
@@ -1401,79 +1402,41 @@ function startFirstMoveClock() {
         return;
     }
 
-
     firstMoveInterval = setInterval(function () {
 
         if (gameOver) {
-
             clearInterval(firstMoveInterval);
             firstMoveInterval = null;
-
             return;
         }
 
-
-        /* BARDHI */
-
-        if (
-            whiteTurn &&
-            !whiteFirstMoveDone
-        ) {
+        /* AFATI I BARDHIT */
+        if (whiteTurn && !whiteFirstMoveDone) {
+            if (whiteFirstMoveTime <= 35) {
+                clearInterval(firstMoveInterval);
+                firstMoveInterval = null;
+                gameOver = true;
+                updateFirstMoveClock();
+                return;
+            }
 
             whiteFirstMoveTime--;
-
             updateFirstMoveClock();
-
-
-            if (whiteFirstMoveTime <= 0) {
-
-                clearInterval(firstMoveInterval);
-                firstMoveInterval = null;
-
-                gameOver = true;
-
-                document.getElementById("gameResult")
-                    .classList.add("checkmate-result");
-
-                document.getElementById("gameResult")
-                    .textContent =
-                    "🏆 KOHA MBAROI! FITON LOJTARI I ZI!";
-
-                return;
-            }
         }
 
-
-        /* ZI */
-
-        if (
-            !whiteTurn &&
-            !blackFirstMoveDone
-        ) {
+        /* AFATI I ZIUT */
+        if (!whiteTurn && !blackFirstMoveDone) {
+            if (blackFirstMoveTime <= 35) {
+                clearInterval(firstMoveInterval);
+                firstMoveInterval = null;
+                gameOver = true;
+                updateFirstMoveClock();
+                return;
+            }
 
             blackFirstMoveTime--;
-
             updateFirstMoveClock();
-
-
-            if (blackFirstMoveTime <= 0) {
-
-                clearInterval(firstMoveInterval);
-                firstMoveInterval = null;
-
-                gameOver = true;
-
-                document.getElementById("gameResult")
-                    .classList.add("checkmate-result");
-
-                document.getElementById("gameResult")
-                    .textContent =
-                    "🏆 KOHA MBAROI! FITON LOJTARI I BARDHË!";
-
-                return;
-            }
         }
-
 
     }, 1000);
 }
@@ -1616,22 +1579,27 @@ for (let i = 0; i < 64; i++) {
 
     const row = Math.floor(i / 8);
     const col = i % 8;
+/* KOORDINATAT SIPAS ORIENTIMIT */
 
+if (!boardFlipped) {
+    if (row === 7) {
+        square.dataset.file = String.fromCharCode(97 + col);
+    }
 
-    /* KOORDINATAT */
+    if (col === 7) {
+        square.dataset.rank = 8 - row;
+    }
+} else {
+    if (row === 0) {
+        square.dataset.file = String.fromCharCode(97 + col);
+    }
 
-if (row === 7) {
-    square.dataset.file =
-        String.fromCharCode(97 + col);
+    if (col === 0) {
+        square.dataset.rank = 8 - row;
+    }
 }
-
-if (col === 7) {
-    square.dataset.rank =
-        8 - row;
-}
-
-
-   /* FIGURAT */
+ 
+/* FIGURAT */
 
 if (pieces[i] !== "") {
 
@@ -1675,18 +1643,19 @@ function showPromotionChoice(isWhite, targetSquare) {
         overlay.className = "promotion-overlay";
 
         const box = document.createElement("div");
-        box.className = "promotion-box";
+        box.style.cssText = "display:flex;gap:6px;padding:8px;min-width:0;width:max-content;box-sizing:border-box;";
+     box.className = "promotion-box";
         box.style.position = "fixed";
-
-        const pieces = isWhite
+const pieces = isWhite
             ? ["♕", "♖", "♗", "♘"]
             : ["♛", "♜", "♝", "♞"];
 
         pieces.forEach(function(piece) {
 
-            const button = document.createElement("button");
-            button.className = "promotion-piece";
-            button.textContent = piece;
+         const button = document.createElement("button");
+         button.className = "promotion-piece";
+         button.style.cssText = "width:55px;height:55px;font-size:42px;flex:0 0 55px;";
+         button.textContent = piece;
 
             button.addEventListener("click", function() {
                 overlay.remove();
@@ -3905,16 +3874,15 @@ updateClocks();
 
 clearInterval(firstMoveInterval);
 firstMoveInterval = null;
-
-whiteFirstMoveTime = 25;
-blackFirstMoveTime = 25;
+whiteFirstMoveTime = 59;
+blackFirstMoveTime = 59;
 
 whiteFirstMoveDone = false;
 blackFirstMoveDone = false;
 
 updateFirstMoveClock();
 
-/* RINIS 25 SEKONDAT */
+/* RINIS 59 SEKONDAT */
 startFirstMoveClock();
 
   document.getElementById("gameResult").textContent = "";      
