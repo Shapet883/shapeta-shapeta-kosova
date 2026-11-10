@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="sq">
 <head>
 <meta charset="UTF-8">
@@ -25,15 +25,15 @@ text-align: center;
 display: none;
 }
 body {  
-    margin: 0;
-    background: #222;
-    color: white;
-    font-family: Arial, sans-serif;
-    text-align: center;
+ margin: 0;
+ background: #222;
+ color: white;
+ font-family: Arial, sans-serif;
+ text-align: center;
 }
       h1 {
     margin: 20px 0;
-    font-size: 15px;
+    font-size: 25px;
     font-weight: bold;
     letter-spacing: 0;
     text-shadow:
@@ -50,8 +50,8 @@ box-sizing: border-box;
 transform: none;
 }
 .title-flag {
-    width: 32px;
-    height: 22px;
+    width: 35px;
+    height: 30px;
     object-fit: contain;
     flex-shrink: 0;
 }
@@ -70,9 +70,9 @@ transform: none;
     margin: 0 25px;
 }
  #subtitle {
-    font-size: 17px;
+    font-size: 12px;
     margin-top: -12px;
-    margin-bottom: 12px;
+    margin-bottom: 5px;
     font-style: italic;
     transform: translateX(-3%);
 }
@@ -80,8 +80,8 @@ transform: none;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    gap: 25px;
-    margin: 20px 0 20px 150px;
+    gap: 5px;
+    margin: 18px 0 18px 150px;
 }
 
 
@@ -204,8 +204,8 @@ right: auto;
     transform: rotate(180deg);
 }
  #newGameButton {
-    width: 38px;
-    height: 30px;
+    width: 45px;
+    height: 37px;
     margin: 10px 0 20px 0;
     padding: 0;
     font-size: 22px;
@@ -217,7 +217,7 @@ right: auto;
     color: #fff;
     box-sizing: border-box;
     box-shadow: 0 0 8px rgba(255,255,255,0.15);
-    transform: translateY(-40px);
+    transform: translate(-40px, -60px);
 margin: 0 0 5px 0;
 } 
 
@@ -261,7 +261,7 @@ flex-shrink: 0;
         outline-offset: 3px !important;
         box-sizing: border-box;
         box-shadow: none !important;
-        margin: 0 auto !important;
+        margin-right: 10px !important;
     }
     .square {
      position: relative !important;
@@ -300,15 +300,7 @@ flex-shrink: 0;
         margin: 10px auto;
         width: 100%;
     }
-
-    #sidePanel {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-
- #board {
+#board {
     display: grid;
     width: min(500px, 92vw);
     height: min(500px, 92vw);
@@ -454,10 +446,10 @@ overflow-y: auto;
     box-shadow: 0 0 8px rgba(255,255,255,0.15);
 }
 .clock-active {
-    background: #555 !important;
-    border: 2px solid #66b3ff !important;
+    background: #000000 !important;
+    border: 1px solid #00cc44 !important;
     border-radius: 8px !important;
-    box-shadow: 0 0 12px 3px rgba(102, 179, 255, 0.45);
+    box-shadow: 0 0 3px rgba(0, 204, 68, 0.35) !important;
 }
 #blackFirstMove.first-move-danger,
 #whiteFirstMove.first-move-danger {
@@ -481,7 +473,7 @@ overflow-y: auto;
 overflow: visible;
 }
 
-.main-title strong {
+ .main-title strong {
     margin: 0 4px 0 4px;
     white-space: nowrap;
 }
@@ -583,11 +575,10 @@ padding-right: 10px;
 }
  
  /* ALARMI I KUQ - 10 SEKONDAT E FUNDIT */
-
-#whiteClock.clock-danger,
-#blackClock.clock-danger {
-    border: 3px solid #ff2222 !important;
-    background: #222 !important;
+#whiteClock.first-move-danger,
+#blackClock.first-move-danger {
+border: 3px solid #ff2222 !important;
+background: #222 !important;
 }
 
  /* HIJA E LËVIZJES SË FUNDIT */
@@ -814,12 +805,12 @@ color: #66b3ff !important;
 
    #clockBoardArea {
     display: flex;
-    flex-direction: row;
+   flex-direction: column; 
     align-items: center;
     width: fit-content;
     margin: 0 auto;
 }
-
+ 
  #gameArea {
     display: flex;
     flex-direction: row;
@@ -908,8 +899,13 @@ color: #66b3ff !important;
     font-size: 22px !important;
     padding: 6px 12px !important;
     margin: 8px auto !important;
+
+    background: #000000 !important;
+    border: 2px solid #D4AF37 !important;
+    color: #ffffff !important;
+    font-weight: normal !important;
+    box-shadow: none !important;
 }
- 
  /* KËTU FILLON PJESA E RE PËR TELEFON */
 
 @media (max-width: 600px) {
@@ -920,7 +916,7 @@ color: #66b3ff !important;
     grid-template-areas:
     "blackFirst blackClock newGame"
     "board board board"
-    "whiteFirst whiteClock whiteClock"
+    "whiteFirst whiteClock ."
     "moveHistory moveHistory moveHistory";
     align-items: end;
     justify-items: center;
@@ -935,7 +931,7 @@ transform: translateX(0);
     #whiteClockArea {
         display: contents;
     }
-#blackFirstMove { grid-area: blackClock; }
+#blackFirstMove { grid-area: blackFirst; }
 
     #blackClock {
         grid-area: blackClock;
@@ -979,7 +975,9 @@ transform: translateX(0);
         grid-area: board;
     }
 
-#whiteFirstMove { grid-area: whiteClock; } 
+#whiteFirstMove {
+    grid-area: whiteClock;
+}
 
     #whiteClock {
         grid-area: whiteClock;
@@ -1018,17 +1016,24 @@ transform: translateX(0);
 #clockBoardArea.clock-flipped #whiteClock {
     grid-area: blackClock;
 }
+/* 10 SEKONDAT E FUNDIT TË ORËS 5-MINUTËSHE */
 #whiteClock.clock-active.clock-danger,
-#blackClock.clock-active.clock-danger,
+#blackClock.clock-active.clock-danger {
+    background: #000000 !important;
+    border: 2px solid #D4AF37 !important;
+    color: #ff2222 !important;
+    font-weight: normal !important;
+    box-shadow: none !important;
+}
+
+/* ALERTI I 25 SEKONDAVE */
 #whiteClock.first-move-danger,
 #blackClock.first-move-danger {
-    border: 3px solid #ff2222 !important;
-    background: #222 !important;
-    color: #fff !important;
-    box-shadow:
-        0 0 8px #ff2222 !important,
-        0 0 18px #ff2222 !important,
-        0 0 30px rgba(255, 34, 34, 0.8) !important;
+    background: #000000 !important;
+    border: 2px solid #D4AF37 !important;
+    color: #ffffff !important;
+    font-weight: normal !important;
+    box-shadow: none !important;
 }
 #blackFirstMove {
     grid-area: blackClock;
@@ -1041,6 +1046,15 @@ transform: translateX(0);
         inset 0 0 0 3px rgba(255, 255, 255, 0.75),
         inset 0 0 10px rgba(0, 0, 0, 0.25) !important;
 }
+#blackClock,
+#whiteClock {
+    justify-self: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    position: relative !important;
+    left: -36px !important;
+    transform: none !important;
+}
 
 /* RREGULLIMI I ORËVE KUR TABELA RROTULLOHET */
 #clockBoardArea.clock-flipped #blackClock,
@@ -1049,19 +1063,28 @@ transform: translateX(0);
 #clockBoardArea.clock-flipped #whiteFirstMove {
     transform: none !important;
 }
-} 
+ /* ORA AKTIVE – VETËM TELEFON */
+#whiteClock.clock-active,
+#blackClock.clock-active {
+    background: #000000 !important;
+    border: 1px solid #00cc44 !important;
+    box-shadow: 0 0 3px rgba(0, 204, 68, 0.35) !important;
+}
+}
 /* RREGULLIMI STATIK NË KOMPJUTER */
 @media (min-width: 601px) {
 
     #gameArea {
         display: flex !important;
+        flex-direction: row !important;
         align-items: flex-start !important;
-        justify-content: center !important;
-        gap: 25px !important;
+        justify-content: flex-start !important;
+        gap: 10px !important;
     }
 
     #board {
         flex: 0 0 520px !important;
+        margin: 0 !important;
     }
 
     #sidePanel {
@@ -1071,6 +1094,7 @@ transform: translateX(0);
         min-width: 300px !important;
         max-width: 300px !important;
         align-items: stretch !important;
+    margin-top: -8px !important;
     }
 
     #moveHistory {
@@ -1087,59 +1111,52 @@ transform: translateX(0);
         box-sizing: border-box !important;
     }
 
-#blackClockArea,
-#whiteClockArea {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 8px !important;
-    width: max-content !important;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    flex-wrap: nowrap !important;
-    padding: 0 !important;
-}
-
-#blackClock,
-#whiteClock {
-    width: 110px !important;
-    min-width: 110px !important;
-    max-width: 110px !important;
-    height: 30px !important;
-    min-height: 30px !important;
-    margin: 0 !important;
-    padding: 3px 8px !important;
-    line-height: 1 !important;
-    box-sizing: border-box !important;
-}
-
-#blackFirstMove,
-#whiteFirstMove {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    width: 45px !important;
-    min-width: 45px !important;
-    color: #ffffff !important;
-    font-size: 18px !important;
-    text-align: center !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    flex-shrink: 0 !important;
-}
-@media (min-width: 601px) {
-    #gameArea {
-       justify-content: flex-start !important; 
+    #blackClockArea,
+    #whiteClockArea {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        width: max-content !important;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+        flex-wrap: nowrap !important;
+        padding: 0 !important;
     }
 
-    #board {
+    #blackClock,
+    #whiteClock {
+        width: 110px !important;
+        min-width: 110px !important;
+        max-width: 110px !important;
+        height: 30px !important;
+        min-height: 30px !important;
         margin: 0 !important;
-        flex: 0 0 520px !important;
+        padding: 3px 8px !important;
+        line-height: 1 !important;
+        box-sizing: border-box !important;
     }
+
+    #blackFirstMove,
+    #whiteFirstMove {
+        display: block !important;
+        visibility: hidden !important;
+        opacity: 1 !important;
+        width: 45px !important;
+        min-width: 45px !important;
+        color: #ffffff !important;
+        font-size: 18px !important;
+        text-align: center !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        flex-shrink: 0 !important;
+    }
+
 }
-/* ALARMI I KUQ NË KOMPJUTER */
+
+ /* ALARMI I KUQ NË KOMPJUTER */
 @media (min-width: 601px) {
     #whiteClock.first-move-danger,
     #blackClock.first-move-danger {
@@ -1234,8 +1251,8 @@ let blackKingMoved = false;
 
 /* 25 SEKONDA PËR LËVIZJEN E PARË */
 
-let whiteFirstMoveTime = 59;
-let blackFirstMoveTime = 59;
+let whiteFirstMoveTime = 25;
+let blackFirstMoveTime = 25;
 
 let whiteFirstMoveDone = false;
 let blackFirstMoveDone = false;
@@ -1262,113 +1279,56 @@ function formatTime(seconds) {
 
 function updateClocks() {
 
-    document.getElementById("whiteClock").textContent =
-        formatTime(whiteTime);
+    const whiteClock = document.getElementById("whiteClock");
+    const blackClock = document.getElementById("blackClock");
 
-    document.getElementById("blackClock").textContent =
-        formatTime(blackTime);
+    whiteClock.textContent = formatTime(whiteTime);
+    blackClock.textContent = formatTime(blackTime);
 
+    /* HIQ STILET E VJETRA */
+    whiteClock.style.removeProperty("border");
+    whiteClock.style.removeProperty("box-shadow");
+    blackClock.style.removeProperty("border");
+    blackClock.style.removeProperty("box-shadow");
 
-   /* HIQ NGJYRAT E VJETRA */
+    /* ORA AKTIVE */
+    whiteClock.classList.toggle("clock-active", whiteTurn);
+    blackClock.classList.toggle("clock-active", !whiteTurn);
 
-document.getElementById("blackClock")
-    .style.removeProperty("border");
-
-document.getElementById("blackClock")
-    .style.removeProperty("box-shadow");
-document.getElementById("whiteClock")
-    .style.removeProperty("border");
-
-document.getElementById("whiteClock")
-    .style.removeProperty("box-shadow");
-/* ORA AKTIVE */
-
-const clock = document.getElementById(
-    whiteTurn ? "whiteClock" : "blackClock"
-);
-
-clock.classList.add("clock-active");
-
-if (clock.classList.contains("first-move-danger")) {
-    clock.style.setProperty("border", "3px solid #ff2222", "important");
-    clock.style.setProperty(
-        "box-shadow",
-        "0 0 8px #ff2222, 0 0 18px #ff2222, 0 0 30px rgba(255,34,34,0.8)",
-        "important"
-    );
-} else if (window.matchMedia("(min-width: 601px)").matches) {
-    clock.style.setProperty("border", "none", "important");
-    clock.style.setProperty("box-shadow", "none", "important");
-} else {
-    clock.style.setProperty("border", "3px solid #72c98a", "important");
-    clock.style.setProperty(
-        "box-shadow",
-        "0 0 6px #8acfa0, 0 0 12px #72c98a",
-        "important"
-    );
-}
-
-/* KUQ NË 10 SEKONDAT E FUNDIT */
-
-if (whiteTurn && whiteTime <= 10) {
-
-    const clock = document.getElementById("whiteClock");
-
-    clock.classList.add("clock-danger");
-
-    clock.style.setProperty(
-        "border",
-        "3px solid #ff2222",
-        "important"
+    /* KUQ NË 10 SEKONDAT E FUNDIT */
+    whiteClock.classList.toggle(
+        "clock-danger",
+        whiteTurn && whiteTime <= 10 && whiteTime > 0
     );
 
-    clock.style.setProperty(
-        "box-shadow",
-        "0 0 8px #ff2222, 0 0 18px #ff2222, 0 0 30px rgba(255,34,34,0.8)",
-        "important"
+    blackClock.classList.toggle(
+        "clock-danger",
+        !whiteTurn && blackTime <= 10 && blackTime > 0
     );
-}
-
-if (!whiteTurn && blackTime <= 10) {
-
-    const clock = document.getElementById("blackClock");
-
-    clock.classList.add("clock-danger");
-
-    clock.style.setProperty(
-        "border",
-        "3px solid #ff2222",
-        "important"
-    );
-
-    clock.style.setProperty(
-        "box-shadow",
-        "0 0 8px #ff2222, 0 0 18px #ff2222, 0 0 30px rgba(255,34,34,0.8)",
-        "important"
-    );
-}
-
 }
 function updateFirstMoveClock() {
 
     const whiteCount = document.getElementById("whiteFirstMove");
     const blackCount = document.getElementById("blackFirstMove");
-    const whiteClock = document.getElementById("whiteClock");
-    const blackClock = document.getElementById("blackClock");
 
     whiteCount.textContent = whiteFirstMoveTime;
     blackCount.textContent = blackFirstMoveTime;
 
     if (window.matchMedia("(min-width: 601px)").matches) {
 
-        whiteCount.style.display = "block";
-        blackCount.style.display = "block";
+        whiteCount.style.setProperty("display", "block", "important");
+        whiteCount.style.setProperty(
+            "visibility",
+            !whiteFirstMoveDone && whiteTurn ? "visible" : "hidden",
+            "important"
+        );
 
-        whiteCount.style.visibility =
-            !whiteFirstMoveDone && whiteTurn ? "visible" : "hidden";
-
-        blackCount.style.visibility =
-            !blackFirstMoveDone && !whiteTurn ? "visible" : "hidden";
+        blackCount.style.setProperty("display", "block", "important");
+        blackCount.style.setProperty(
+            "visibility",
+            !blackFirstMoveDone && !whiteTurn ? "visible" : "hidden",
+            "important"
+        );
 
     } else {
 
@@ -1379,18 +1339,18 @@ function updateFirstMoveClock() {
             !blackFirstMoveDone && !whiteTurn ? "block" : "none";
     }
 
-    whiteClock.classList.toggle(
+    whiteCount.classList.toggle(
         "first-move-danger",
         !whiteFirstMoveDone &&
-        whiteFirstMoveTime <= 45 &&
-        whiteFirstMoveTime >= 35
+        whiteFirstMoveTime <= 10 &&
+        whiteFirstMoveTime >= 1
     );
 
-    blackClock.classList.toggle(
+    blackCount.classList.toggle(
         "first-move-danger",
         !blackFirstMoveDone &&
-        blackFirstMoveTime <= 45 &&
-        blackFirstMoveTime >= 35
+        blackFirstMoveTime <= 10 &&
+        blackFirstMoveTime >= 1
     );
 }
 
@@ -1412,7 +1372,7 @@ function startFirstMoveClock() {
 
         /* AFATI I BARDHIT */
         if (whiteTurn && !whiteFirstMoveDone) {
-            if (whiteFirstMoveTime <= 35) {
+            if (whiteFirstMoveTime <= 0) {
                 clearInterval(firstMoveInterval);
                 firstMoveInterval = null;
                 gameOver = true;
@@ -1426,7 +1386,7 @@ function startFirstMoveClock() {
 
         /* AFATI I ZIUT */
         if (!whiteTurn && !blackFirstMoveDone) {
-            if (blackFirstMoveTime <= 35) {
+            if (blackFirstMoveTime <= 0) {
                 clearInterval(firstMoveInterval);
                 firstMoveInterval = null;
                 gameOver = true;
@@ -1632,7 +1592,187 @@ if (pieces[i] !== "") {
 function getPiece(square) {
     return square.textContent;
 }
+/* BUTONI DHE RREGULLAT - VETËM KOMPJUTER */
 
+
+
+    const rulesButton = document.createElement("button");
+    rulesButton.id = "chessRulesButton";
+    rulesButton.innerHTML = `
+    <img src="Hyjnesha.pgn..jpg"
+         alt="Hyjnesha në Fron"
+         width="50"
+         height="50"
+         style="border:2px solid #d4af37;
+                border-radius:50%;
+                object-fit:cover;
+                box-sizing:border-box;">
+`;
+
+    rulesButton.style.cssText = `
+    position: fixed;
+    z-index: 5000;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+`;
+
+    const rulesOverlay = document.createElement("div");
+    rulesOverlay.id = "chessRulesOverlay";
+
+    rulesOverlay.style.cssText = `
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        background: rgba(0,0,0,0.75);
+        align-items: center;
+        justify-content: center;
+    `;
+
+    const rulesBox = document.createElement("div");
+
+    rulesBox.style.cssText = `
+        background: #b8b8b8;
+color: #444;
+border: 3px solid #d4af37;
+        border-radius: 10px;
+        padding: 22px;
+        width: 520px;
+        max-width: 90vw;
+        text-align: left;
+        max-height: 85vh;
+        overflow-y: auto;
+        box-shadow: 0 5px 20px #000;
+    `;
+
+    rulesBox.innerHTML = `
+<div style="text-align:center;">
+    <img src="Hyjnesha.pgn..jpg"
+         width="65" height="65"
+         style="border-radius:50%;object-fit:cover;">
+    <div style="font-size:22px;font-weight:bold;">
+        S ⚔️ RREGULLAT E SHAHUT
+    </div>
+</div>
+<hr>
+
+<div class="chess-rule-list">
+
+<details><summary>1. ♟️ Qëllimi i lojës</summary>
+<p>Shahu luhet nga dy lojtarë: i Bardhi dhe i Ziu. Qëllimi është të vendosësh mbretin e kundërshtarit në shah-mat.</p></details>
+
+<details><summary>2. ♟️ Tabela e shahut</summary>
+<p>Tabela ka 64 katrorë, 8 rreshta dhe 8 kolona. Secili lojtar fillon me 16 figura: një mbret, një mbretëreshë, dy torre, dy fila, dy kuaj dhe tetë pionë.</p></details>
+
+<details><summary>3. ♙ Pioni</summary>
+<p>Pioni lëviz përpara dhe kap diagonalisht. Nga pozicioni fillestar mund të lëvizë një ose dy katrorë, nëse rruga është e lirë.</p></details>
+
+<details><summary>4. ♘ Kali</summary>
+<p>Kali lëviz në formën e shkronjës L: dy katrorë në një drejtim dhe një katror anash. Kali mund të kërcejë mbi figura të tjera.</p></details>
+
+<details><summary>5. ♗ Fili</summary>
+<p>Fili lëviz vetëm diagonalisht, për aq katrorë sa është e lirë rruga. Çdo fil qëndron gjatë gjithë lojës në katrorë të së njëjtës ngjyrë.</p></details>
+
+<details><summary>6. ♖ Torra</summary>
+<p>Torra lëviz horizontalisht ose vertikalisht, për aq katrorë sa është e lirë rruga.</p></details>
+
+<details><summary>7. ♕ Mbretëresha</summary>
+<p>Mbretëresha mund të lëvizë horizontalisht, vertikalisht dhe diagonalisht.</p></details>
+
+<details><summary>8. ♔ Mbreti</summary>
+<p>Mbreti lëviz vetëm një katror në çdo drejtim. Nuk lejohet të lëvizë në një katror ku kërcënohet nga një figurë kundërshtare.</p></details>
+
+<details><summary>9. ⚔️ Kapja e figurave</summary>
+<p>Një figurë kapet kur një figurë kundërshtare lëviz në katrorin ku ajo ndodhet. Një lojtar nuk mund të kapë figurat e veta.</p></details>
+
+<details><summary>10. 👑 Shahu</summary>
+<p>Mbreti është në shah kur kërcënohet drejtpërdrejt nga një figurë kundërshtare. Shahu duhet të largohet me një lëvizje të ligjshme.</p></details>
+
+<details><summary>11. 🏆 Shah-mati</summary>
+<p>Kur mbreti është në shah dhe nuk ka asnjë lëvizje të ligjshme për të shpëtuar, kemi shah-mat dhe loja përfundon.</p></details>
+
+<details><summary>12. 🤝 Pat</summary>
+<p>Pat ndodh kur lojtari nuk ka asnjë lëvizje të ligjshme, por mbreti i tij nuk është në shah. Loja përfundon me barazim.</p></details>
+
+<details><summary>13. 🔄 Rokada</summary>
+<p>Rokada është një lëvizje speciale e mbretit dhe torrës. Ekziston rokada e shkurtër dhe rokada e gjatë. Ajo lejohet vetëm kur plotësohen të gjitha kushtet.</p></details>
+
+<details><summary>14. 🐾 Promovimi</summary>
+<p>Kur pioni arrin në rreshtin e fundit, ai duhet të promovohet në mbretëreshë, torrë, fil ose kalë.</p></details>
+
+<details><summary>15. ⚡ En passant</summary>
+<p>En passant është një kapje speciale e pionit. Ajo lejohet vetëm në një situatë të caktuar dhe duhet të bëhet menjëherë pas lëvizjes së pionit kundërshtar me dy katrorë.</p></details>
+
+<details><summary>16. 🚫 Lëvizjet e palejuara</summary>
+<p>Nuk lejohet të lëvizësh një figurë në mënyrë të gabuar, të kalosh përmes figurave të tjera përveç kalit, ose të lësh mbretin tënd në shah.</p></details>
+
+<details><summary>17. 🤝 Remi / Barazimi</summary>
+<p>Loja mund të përfundojë barazim me pat, marrëveshje mes lojtarëve, përsëritje të pozicionit, rregullin e 50 lëvizjeve ose në raste të tjera të përcaktuara nga rregullat e shahut.</p></details>
+
+<details><summary>18. ⏱️ Ora e shahut</summary>
+<p>Secili lojtar ka kohën e tij. Pas lëvizjes, koha kalon te kundërshtari. Kur koha përfundon, lojtari humbet në kohë, sipas rregullave përkatëse.</p></details>
+
+<details><summary>19. 🏁 Përfundimi i lojës</summary>
+<p>Loja mund të përfundojë me shah-mat, dorëzim, humbje në kohë, pat ose barazim sipas rregullave të shahut.</p></details>
+
+</div>
+
+<button id="closeChessRules"
+    style="display:block;margin:18px auto 0;padding:8px 22px;
+    background:#444;color:white;border:0;border-radius:5px;
+    font-weight:bold;cursor:pointer;">
+    ✕ MBYLL
+</button>
+`;
+
+    rulesOverlay.appendChild(rulesBox);
+    document.body.appendChild(rulesOverlay);
+    document.body.appendChild(rulesButton);
+
+    function positionRulesButton() {
+    const rect = board.getBoundingClientRect();
+
+    if (window.innerWidth <= 600) {
+    rulesButton.style.width = "40px";
+    rulesButton.style.height = "40px";
+    rulesButton.style.left = (rect.left + rect.width * 0.72) + "px";
+    rulesButton.style.top = (rect.top - 65) + "px";
+
+    const img = rulesButton.querySelector("img");
+    if (img) {
+        img.style.width = "40px";
+        img.style.height = "40px";
+    }
+} else {
+    rulesButton.style.left = (rect.right - 58) + "px";
+    rulesButton.style.top = (rect.top - 65) + "px";
+}
+}
+
+    positionRulesButton();
+
+    window.addEventListener("resize", positionRulesButton);
+    window.addEventListener("scroll", positionRulesButton);
+
+    rulesButton.addEventListener("click", function() {
+        rulesOverlay.style.display = "flex";
+    });
+
+    document.getElementById("closeChessRules")
+        .addEventListener("click", function() {
+            rulesOverlay.style.display = "none";
+        });
+
+    rulesOverlay.addEventListener("click", function(event) {
+        if (event.target === rulesOverlay) {
+            rulesOverlay.style.display = "none";
+        }
+    });
+
+ 
 /* ZGJEDHJA E PROMOVIMIT */
 
 function showPromotionChoice(isWhite, targetSquare) {
@@ -2624,8 +2764,7 @@ whiteTurn = !whiteTurn;
 console.log("RADHA:", whiteTurn ? "BARDHI" : "ZI");
 document.getElementById("whiteClock")
     .classList.toggle("clock-active", whiteTurn);
-
-document.getElementById("blackClock")
+ document.getElementById("blackClock")
     .classList.toggle("clock-active", !whiteTurn);  
 
                       
@@ -3870,12 +4009,13 @@ clockStarted = false;
 clearInterval(clockInterval);
 clockInterval = null;
 updateClocks();
+
 /* RESET 25 SEKONDAT E LËVIZJES SË PARË */
 
 clearInterval(firstMoveInterval);
 firstMoveInterval = null;
-whiteFirstMoveTime = 59;
-blackFirstMoveTime = 59;
+whiteFirstMoveTime = 25;
+blackFirstMoveTime = 25;
 
 whiteFirstMoveDone = false;
 blackFirstMoveDone = false;
@@ -3909,240 +4049,7 @@ rulesGrid.classList.toggle("rules-open");
 
 </script>
 
- <!-- ============================= -->
-<!-- RREGULLAT E SHAHUT             -->
-<!-- ============================= -->
 
-<section id="chessRules">
-
-<h2 id="rulesToggle"><span class="rules-button">S</span> ⚔️ RREGULLAT E SHAHUT</h2>
-
-    <div class="rules-grid">
-
-        <div class="rule-card">
-            <h3>1. ♟️ Qëllimi i lojës</h3>
-            <p>
-                Shahu luhet nga dy lojtarë: i Bardhi dhe i Ziu.
-                Qëllimi është të vendosësh mbretin e kundërshtarit
-                në shah-mat.
-            </p>
-        </div>
-
-        <div class="rule-card">
-            <h3>2. ♟️ Tabela e shahut</h3>
-            <p>
-                Tabela ka 64 katrorë, 8 rreshta dhe 8 kolona.
-                Secili lojtar fillon me 16 figura:
-                një mbret, një mbretëreshë, dy torre, dy fila,
-                dy kuaj dhe tetë pionë.
-            </p>
-        </div>
-
-        <div class="rule-card">
-            <h3>3. ♙ Pioni</h3>
-            <p>
-                Pioni lëviz përpara dhe kap diagonalisht.
-                Nga pozicioni fillestar mund të lëvizë një ose
-                dy katrorë, nëse rruga është e lirë.
-            </p>
-        </div>
-
-        <div class="rule-card">
-            <h3>4. ♘ Kali</h3>
-            <p>
-                Kali lëviz në formën e shkronjës L:
-                dy katrorë në një drejtim dhe një katror anash.
-                Kali mund të kërcejë mbi figura të tjera.
-            </p>
-        </div>
-
-        <div class="rule-card">
-            <h3>5. ♗ Fili</h3>
-            <p>
-                Fili lëviz vetëm diagonalisht, për aq katrorë
-                sa është e lirë rruga. Çdo fil qëndron gjatë
-                gjithë lojës në katrorë të së njëjtës ngjyrë.
-            </p>
-        </div>
-
-        <div class="rule-card">
-            <h3>6. ♖ Torra</h3>
-            <p>
-                Torra lëviz horizontalisht ose vertikalisht,
-                për aq katrorë sa është e lirë rruga.
-            </p>
-        </div>
-
-        <div class="rule-card">
-            <h3>7. ♕ Mbretëresha</h3>
-            <p>
-                Mbretëresha mund të lëvizë horizontalisht,
-                vertikalisht dhe diagonalisht.
-            </p>
-        </div>
-
-        <div class="rule-card">
-            <h3>8. ♔ Mbreti</h3>
-            <p>
-                Mbreti lëviz vetëm një katror në çdo drejtim.
-                Nuk lejohet të lëvizë në një katror ku kërcënohet
-                nga një figurë kundërshtare.
-            </p>
-        </div>
-
-        <div class="rule-card">
-            <h3>9. ⚔️ Kapja e figurave</h3>
-            <p>
-                Një figurë kapet kur një figurë kundërshtare
-                lëviz në katrorin ku ajo ndodhet.
-                Një lojtar nuk mund të kapë figurat e veta.
-            </p>
-        </div>
-
-        <div class="rule-card">
-            <h3>10. 👑 Shahu</h3>
-            <p>
-                Mbreti është në shah kur kërcënohet drejtpërdrejt
-                nga një figurë kundërshtare. Shahu duhet të
-                largohet me një lëvizje të ligjshme.
-            </p>
-        </div>
-
-        <div class="rule-card">
-            <h3>11. 🏆 Shah-mati</h3>
-            <p>
-                Kur mbreti është në shah dhe nuk ka asnjë
-                lëvizje të ligjshme për të shpëtuar,
-                kemi shah-mat dhe loja përfundon.
-            </p>
-        </div>
-
-        <div class="rule-card">
-            <h3>12. 🤝 Pat</h3>
-            <p>
-                Pat ndodh kur lojtari nuk ka asnjë lëvizje
-                të ligjshme, por mbreti i tij nuk është në shah.
-                Loja përfundon me barazim.
-            </p>
-        </div>
-
-        <div class="rule-card">
-            <h3>13. 🔄 Rokada</h3>
-            <p>
-                Rokada është një lëvizje speciale e mbretit
-                dhe torrës. Ekziston rokada e shkurtër dhe
-                rokada e gjatë. Ajo lejohet vetëm kur plotësohen
-                të gjitha kushtet e rokadës.
-            </p>
-        </div>
-
-        <div class="rule-card">
-            <h3>14. 🐾 Promovimi</h3>
-            <p>
-                Kur pioni arrin në rreshtin e fundit, ai duhet
-                të promovohet në mbretëreshë, torrë, fil ose kalë.
-            </p>
-        </div>
-
-        <div class="rule-card">
-            <h3>15. ⚡ En passant</h3>
-            <p>
-                En passant është një kapje speciale e pionit.
-                Ajo lejohet vetëm në një situatë të caktuar dhe
-                duhet të bëhet menjëherë pas lëvizjes së pionit
-                kundërshtar me dy katrorë.
-            </p>
-        </div>
-
-        <div class="rule-card">
-            <h3>16. 🚫 Lëvizjet e palejuara</h3>
-            <p>
-                Nuk lejohet të lëvizësh një figurë në mënyrë
-                të gabuar, të kalosh përmes figurave të tjera
-                përveç kalit, ose të lësh mbretin tënd në shah.
-            </p>
-        </div>
-
-        <div class="rule-card">
-            <h3>17. 🤝 Remi / Barazimi</h3>
-            <p>
-                Loja mund të përfundojë barazim me pat,
-                marrëveshje mes lojtarëve, përsëritje të pozicionit,
-                rregullin e 50 lëvizjeve ose në raste të tjera
-                të përcaktuara nga rregullat e shahut.
-            </p>
-        </div>
-
-        <div class="rule-card">
-            <h3>18. ⏱️ Ora e shahut</h3>
-            <p>
-                Secili lojtar ka kohën e tij. Pas lëvizjes,
-                koha kalon te kundërshtari. Kur koha përfundon,
-                lojtari humbet në kohë, sipas rregullave përkatëse.
-            </p>
-        </div>
-
-        <div class="rule-card">
-            <h3>19. 🏁 Përfundimi i lojës</h3>
-            <p>
-                Loja mund të përfundojë me shah-mat, dorëzim,
-                humbje në kohë, pat ose barazim sipas rregullave
-                të shahut.
-            </p>
-        </div>
-
-    </div>
-
-</section>
-<!-- KËSHILLA PËR FILLESTARË -->
-
-<section id="beginnerTips">
-
-    <h2>💡 KËSHILLA PËR FILLESTARË</h2>
-
-    <div class="tips-list">
-
-        <div class="tip-item">
-            ♟️ Mëso lëvizjen e çdo figure.
-        </div>
-
-        <div class="tip-item">
-            🎯 Përpiqu të kontrollosh qendrën e tabelës.
-        </div>
-
-        <div class="tip-item">
-            ♞ Nxirr kuajt dhe filat në fillim të lojës.
-        </div>
-
-        <div class="tip-item">
-            👑 Mos e nxirr mbretëreshën shumë herët.
-        </div>
-
-        <div class="tip-item">
-            🏰 Bëj rokadë për ta mbrojtur mbretin.
-        </div>
-
-        <div class="tip-item">
-            🛡️ Mos i lër figurat pa mbrojtje.
-        </div>
-
-        <div class="tip-item">
-            👀 Para se të lëvizësh, shiko çfarë kërcënon kundërshtari.
-        </div>
-
-        <div class="tip-item">
-            🤔 Mendo pak para çdo lëvizjeje.
-        </div>
-
-        <div class="tip-item">
-            ⚔️ Mos kap një figurë pa kontrolluar nëse mund të të kapet.
-        </div>
-
-        <div class="tip-item">
-            ♟️ Luaj shpesh dhe mëso nga gabimet.
-        </div>
-
-    </div>
 
 </section>
 <!-- FOOTER -->
