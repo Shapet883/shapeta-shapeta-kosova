@@ -217,7 +217,7 @@ right: auto;
     color: #fff;
     box-sizing: border-box;
     box-shadow: 0 0 8px rgba(255,255,255,0.15);
-    transform: translate(-40px, -60px);
+    transform: translate(-3px, -60px);
 margin: 0 0 5px 0;
 } 
 
@@ -931,7 +931,11 @@ transform: translateX(0);
     #whiteClockArea {
         display: contents;
     }
-#blackFirstMove { grid-area: blackFirst; }
+#blackFirstMove {
+    grid-area: blackFirst;
+    position: relative;
+    left: -5px;
+}
 
     #blackClock {
         grid-area: blackClock;
@@ -961,14 +965,14 @@ transform: translateX(0);
 
 #blackFirstMove {
  position: relative;
- left: -35px;
+ left: -50px;
  z-index: 2;
  width: 28px;
  text-align: center;
 }
 
 #newGameButton {
-  transform: translate(-25px, 0);
+  transform: translate(-30px, 0);
 }
    
  #board {
@@ -1002,7 +1006,7 @@ transform: translateX(0);
     margin: 0 auto !important;
 }
 #clockBoardArea.clock-flipped #blackFirstMove {
-    grid-area: whiteClock;
+    grid-area: whiteFirst;
 }
 
 #clockBoardArea.clock-flipped #blackClock {
@@ -1010,13 +1014,13 @@ transform: translateX(0);
 }
 
 #clockBoardArea.clock-flipped #whiteFirstMove {
-    grid-area: blackClock;
+    grid-area: blackFirst;
 }
 
 #clockBoardArea.clock-flipped #whiteClock {
     grid-area: blackClock;
 }
-/* 10 SEKONDAT E FUNDIT TË ORËS 5-MINUTËSHE */
+ /* 10 SEKONDAT E FUNDIT TË ORËS 5-MINUTËSHE */
 #whiteClock.clock-active.clock-danger,
 #blackClock.clock-active.clock-danger {
     background: #000000 !important;
@@ -1167,6 +1171,12 @@ transform: translateX(0);
             0 0 8px #ff2222,
             0 0 18px #ff2222,
             0 0 30px rgba(255, 34, 34, 0.8) !important;
+    }
+}
+/* FSHEHJA E LEVIZJEVE VETEM NE TELEFON */
+@media (max-width: 600px) {
+    #moveHistory {
+        display: none !important;
     }
 }
 </style>
