@@ -1179,6 +1179,34 @@ transform: translateX(0);
         display: none !important;
     }
 }
+
+/* HYJNESHA NË FRON */
+.goddess-button {
+    position: relative;
+    display: inline-flex;
+    cursor: pointer;
+}
+
+.goddess-tooltip {
+    display: none;
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #222;
+    color: #D4AF37;
+    border: 1px solid #D4AF37;
+    padding: 6px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 9999;
+}
+
+.goddess-button:hover .goddess-tooltip {
+    display: block;
+}
 </style>
 </head>
 <body>
@@ -1604,21 +1632,21 @@ function getPiece(square) {
 }
 /* BUTONI DHE RREGULLAT - VETËM KOMPJUTER */
 
-
-
-    const rulesButton = document.createElement("button");
-    rulesButton.id = "chessRulesButton";
-    rulesButton.innerHTML = `
-    <img src="Hyjnesha.pgn..jpg"
-         alt="Hyjnesha në Fron"
-         width="50"
-         height="50"
-         style="border:2px solid #d4af37;
-                border-radius:50%;
-                object-fit:cover;
-                box-sizing:border-box;">
+const rulesButton = document.createElement("button");
+rulesButton.id = "chessRulesButton";
+rulesButton.innerHTML = `
+    <span class="goddess-button">
+        <img src="Hyjnesha.pgn..jpg"
+             alt="Hyjnesha në Fron"
+             width="50"
+             height="50"
+             style="border:2px solid #d4af37;
+                    border-radius:50%;
+                    object-fit:cover;
+                    box-sizing:border-box;">
+        <span class="goddess-tooltip">HYJNESHA NË FRON</span>
+    </span>
 `;
-
     rulesButton.style.cssText = `
     position: fixed;
     z-index: 5000;
