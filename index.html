@@ -599,6 +599,16 @@ line-height: 1;
     transform: translateX(0);
 }
 
+#clockBoardArea #sidePanel {
+    display: contents !important;
+}
+
+#clockBoardArea #moveHistory {
+    display: block !important;
+    grid-area: moveHistory !important;
+    visibility: visible !important;
+}
+
 }
 @media (min-width: 700px) {
     .main-title {
@@ -941,12 +951,12 @@ padding-left: 0px;
 transform: translateX(0);
    } 
 
-    #gameArea,
-    #sidePanel,
-    #blackClockArea,
-    #whiteClockArea {
-        display: contents;
-    }
+#gameArea,
+#sidePanel,
+#blackClockArea,
+#whiteClockArea {
+    display: contents !important;
+}
 #blackFirstMove {
     grid-area: blackFirst;
     position: relative;
@@ -1241,8 +1251,9 @@ left: 125px !important;
     width: 150px !important;
     min-width: 150px !important;
     max-width: 150px !important;
-    height: auto !important;
-    min-height: 0 !important;
+    height: 44px !important;
+min-height: 44px !important;
+max-height: 44px !important;
     margin: 8px 0 !important;
     padding: 6px 12px !important;
     box-sizing: border-box !important;
@@ -1305,6 +1316,28 @@ border-radius: 8px !important;
         border-radius: 10px !important;
         box-shadow: 0 0 12px #ff2222 !important;
         padding: 12px 25px !important;
+    }
+}
+/* STABILIZO ORËT – VETËM KOMPJUTERI */
+@media (min-width: 601px) {
+    #whiteClock,
+    #blackClock {
+        border: 1px solid transparent !important;
+        box-sizing: border-box !important;
+    }
+}
+/* RRETHI I ORËVE – VETËM KOMPJUTERI */
+@media (min-width: 601px) {
+    #whiteClock.clock-active,
+    #blackClock.clock-active {
+        border: 2px solid #00cc44 !important;
+        box-shadow: 0 0 3px rgba(0, 204, 68, 0.35) !important;
+    }
+
+    #whiteClock:not(.clock-active),
+    #blackClock:not(.clock-active) {
+        border: 3px solid #D4AF37 !important;
+        box-shadow: 0 0 3px rgba(212, 175, 55, 0.35) !important;
     }
 }
 </style>
