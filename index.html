@@ -232,7 +232,7 @@ right: auto;
     font-weight: bold;
     cursor: pointer;
     border-radius: 6px;
-    border: none;
+    border: 1px solid #D4AF37;
     background: #28a745;
     color: #fff;
     box-sizing: border-box;
@@ -242,10 +242,12 @@ margin: 0 0 5px 0;
 } 
 
 #resignButton {
-    width: 110px;
+    width: 45px;
     height: 37px;
-    margin: 0 0 5px 0;
-    padding: 0;
+    margin: -40px 0 5px 0;
+    position: relative;
+top: -18px;
+ padding: 0;
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
@@ -896,44 +898,15 @@ padding-left: 0px;
     color: #fff !important;
 }
 
-
  @media (max-width: 600px) {
 
-    #clockBoardArea {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    #moveHistory {
+        border: 2px solid #ffffff !important;
+        border-radius: 10px !important;
     }
 
-    #blackClockArea {
-        order: 2;
-    }
-
-    #gameArea {
-        order: 3;
-    }
-
-    #whiteClockArea {
-        order: 4;
-    }
-
-    #resignButton {
-    order: 5;
 }
-
-#newGameButton {
-    order: 6;
-}
-
-#moveHistory {
-    order: 7;
-}
-
-}
-#moveHistory {
-    border: 2px solid #ffffff !important;
-    border-radius: 10px !important;
-}
+   
 @media (min-width: 601px) {
     #blackClock,
     #whiteClock {
@@ -964,21 +937,20 @@ padding-left: 0px;
  /* KËTU FILLON PJESA E RE PËR TELEFON */
 
 @media (max-width: 600px) {
-
-   #clockBoardArea {
+#clockBoardArea {
     display: grid;
     grid-template-columns: 70px 1fr 5px;
     grid-template-areas:
-    "blackFirst blackClock newGame"
-    "board board board"
-    "whiteFirst whiteClock ."
-    "moveHistory moveHistory moveHistory";
+        "blackFirst blackClock newGame"
+        "board board board"
+        "whiteFirst whiteClock ."
+        "moveHistory moveHistory moveHistory";
     align-items: end;
     justify-items: center;
     width: 100%;
     gap: 8px;
-transform: translateX(0);
-   } 
+    transform: translateX(0);
+}
 
 #gameArea,
 #sidePanel,
@@ -996,7 +968,7 @@ transform: translateX(0);
         grid-area: blackClock;
     }
 
- #newGameButton {
+#newGameButton {
     grid-area: newGame;
     width: 50px !important;
     height: 50px !important;
@@ -1008,6 +980,7 @@ transform: translateX(0);
     box-shadow: none !important;
     color: #28a745 !important;
 }
+
 #blackFirstMove,
 #blackClock,
 #newGameButton {
@@ -1421,9 +1394,11 @@ border-radius: 8px !important;
 
 <div id="sidePanel">
 
-<button id="resignButton">🏳️</button>
+<button id="resignButton"><span style="font-size:30px;">🏳️</span></button>
 
-<button id="newGameButton">🔄</button>
+<button id="newGameButton" style="display:flex; align-items:center; justify-content:center;">
+<span style="font-size:30px; line-height:1;">🔄</span>
+</button>
 
 <div id="moveHistory">
 <strong>LËVIZJET</strong>
