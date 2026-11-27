@@ -232,7 +232,7 @@ right: auto;
     font-weight: bold;
     cursor: pointer;
     border-radius: 6px;
-    border: 1px solid #D4AF37;
+border: 2px solid #D4AF37;
     background: #28a745;
     color: #fff;
     box-sizing: border-box;
@@ -631,7 +631,31 @@ line-height: 1;
     grid-area: moveHistory !important;
     visibility: visible !important;
 }
+#resignButton {
+    width: 35px !important;
+    height: 30px !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+ grid-column: 1 !important;
+grid-row: 1 !important;
+ transform: translate(320px, -25px) !important;
+    text-align: center !important;
+    text-indent: 5px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 2px solid #D4AF37 !important;
+    border-radius: 0 !important;
+}
 
+#resignButton span {
+    display: inline-block !important;
+    font-size: 50px !important;
+    line-height: 1 !important;
+    position: relative !important;
+    left: 2px !important;
+    top: 4px !important;
+}
 }
 @media (min-width: 700px) {
     .main-title {
@@ -970,15 +994,21 @@ padding-left: 0px;
 
 #newGameButton {
     grid-area: newGame;
-    width: 50px !important;
-    height: 50px !important;
+    width: 36px !important;
+    height: 36px !important;
     padding: 0 !important;
-    font-size: 40px !important;
     margin: 0 !important;
-    border: none !important;
+    font-size: 40px !important;
+    border: 2px solid #D4AF37 !important;
+    border-radius: 0 !important;
+    outline: none !important;
     background: transparent !important;
     box-shadow: none !important;
     color: #28a745 !important;
+}
+
+#newGameButton span {
+    font-size: 40px !important;
 }
 
 #blackFirstMove,
@@ -1000,7 +1030,7 @@ padding-left: 0px;
 }
 
 #newGameButton {
-  transform: translate(-30px, 0);
+     transform: translate(-42px, 0);
 }
    
 #board {
@@ -1069,7 +1099,7 @@ padding-left: 0px;
     box-shadow: none !important;
 }
 #blackFirstMove {
-    grid-area: blackClock;
+ grid-area: blackClock; 
 }
 
 .light.selected,
@@ -1369,8 +1399,15 @@ border-radius: 8px !important;
 @media (min-width: 601px) {
     #board .mat-board-alert {
         background: rgba(90, 90, 90, 0.90) !important;
+   }
+ }
+ @media (max-width: 600px) {
+    #whiteClock.clock-active,
+    #blackClock.clock-active {
+        border: 2px solid #00cc44 !important;
     }
 }
+
 </style>
 </head>
 <body>
@@ -1394,7 +1431,7 @@ border-radius: 8px !important;
 
 <div id="sidePanel">
 
-<button id="resignButton"><span style="font-size:30px;">🏳️</span></button>
+<button id="resignButton"><span style="font-size:27px; display:inline-block; position:relative; top:4px;">🏳️</span></button>
 
 <button id="newGameButton" style="display:flex; align-items:center; justify-content:center;">
 <span style="font-size:30px; line-height:1;">🔄</span>
@@ -1543,12 +1580,12 @@ function updateFirstMoveClock() {
 
     } else {
 
-        whiteCount.style.display =
-            !whiteFirstMoveDone && whiteTurn ? "block" : "none";
+    whiteCount.style.display =
+        !whiteFirstMoveDone && whiteTurn ? "block" : "none";
 
-        blackCount.style.display =
-            !blackFirstMoveDone && !whiteTurn ? "block" : "none";
-    }
+    blackCount.style.display =
+        !blackFirstMoveDone && !whiteTurn ? "block" : "none";
+}
 
     whiteCount.classList.toggle(
         "first-move-danger",
@@ -3115,7 +3152,7 @@ if (isCheckmate(whiteTurn)) {
 
     matAlert.className = "mat-board-alert";
     matAlert.innerHTML = '<span style="color:#ff3333 !important; font-weight:bold; font-size:1.3em">';
-matAlert.innerHTML += '<span style="color:#ff3333"> ✖ M A T ! </span></span>';
+matAlert.innerHTML += '<span style="color:#ff3333">✖ MAT !</span></span>';
 
     matAlert.style.setProperty(
     "transform",
@@ -4233,7 +4270,6 @@ document.getElementById(
     "click",
     function () {
 boardFlipped = !boardFlipped;
-
 document.getElementById("board").classList.toggle(
     "board-flipped",
     boardFlipped
